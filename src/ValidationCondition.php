@@ -15,7 +15,7 @@ final class ValidationCondition
     private $error;
 
     /**
-     * Helper for catch error validation from if_valid condition
+     * Helper for catch error validation from if_valid condition.
      *
      * @param array Set error for else condition
      */

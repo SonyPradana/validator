@@ -31,7 +31,7 @@ final class Valid
     }
 
     /**
-     * Function to create and return previously created instance
+     * Function to create and return previously created instance.
      *
      * @return Valid
      */

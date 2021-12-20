@@ -17,7 +17,7 @@ if (!function_exists('vr')) {
 
 if (!function_exists('validate')) {
     /**
-     * Alias for validator
+     * Alias for validator.
      *
      * @param array $feild Feild input
      *

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Validator\Traits;
 
 /**
- * Trait contain invert exist validation method from parent
+ * Trait contain invert exist validation method from parent.
  */
-trait InvertValidationTrait{
-
+trait InvertValidationTrait
+{
     protected function validate_invert_required($field, array $input, array $params = [], $value)
     {
         return !$this->validate_required($field, $input, $params, $value);

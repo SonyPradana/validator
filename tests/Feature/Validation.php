@@ -3,12 +3,12 @@
 use Validator\Rule\ValidPool;
 use Validator\Validator;
 
-it("validate using fields and validation", function() {
+it('validate using fields and validation', function () {
     $input = [
-        'id' => 1,
-        'user'  => 'teguh',
-        'name' => 'teguh agus',
-        'favorite'   => ['manggo', 'durian', 'start fruite']
+        'id'         => 1,
+        'user'       => 'teguh',
+        'name'       => 'teguh agus',
+        'favorite'   => ['manggo', 'durian', 'start fruite'],
     ];
     $val = new Validator($input);
 
@@ -19,12 +19,12 @@ it("validate using fields and validation", function() {
     expect($val->is_valid())->toBeTrue();
 });
 
-it("run validation condtion with valid condition", function() {
+it('run validation condtion with valid condition', function () {
     $input = [
-        'id' => 1,
-        'user'  => 'teguh',
-        'name' => 'teguh agus',
-        'favorite'   => ['manggo', 'durian', 'start fruite']
+        'id'         => 1,
+        'user'       => 'teguh',
+        'name'       => 'teguh agus',
+        'favorite'   => ['manggo', 'durian', 'start fruite'],
     ];
     $val = new Validator($input);
 
@@ -32,21 +32,20 @@ it("run validation condtion with valid condition", function() {
     $val->field('user')->required()->min_len(5);
     $val('name')->required()->valid_name();
 
-    $val->if_valid(function() use ($val){
+    $val->if_valid(function () use ($val) {
         expect($val->is_valid())->toBeTrue();
-    })->else(function($err) {
+    })->else(function ($err) {
         // its mean have no error
         expect($err)->toHaveCount(0);
     });
-
 });
 
-it("run validation condtion with valid failed condition", function() {
+it('run validation condtion with valid failed condition', function () {
     $input = [
-        'id' => null,
-        'user'  => 'tgh',
-        'name' => 'teguh agus',
-        'favorite'   => ['manggo', 'durian', 'start fruite']
+        'id'         => null,
+        'user'       => 'tgh',
+        'name'       => 'teguh agus',
+        'favorite'   => ['manggo', 'durian', 'start fruite'],
     ];
     $val = new Validator($input);
 
@@ -54,13 +53,12 @@ it("run validation condtion with valid failed condition", function() {
     $val->field('user')->required()->min_len(5);
     $val('name')->required()->valid_name();
 
-    $val->if_valid(function() {
+    $val->if_valid(function () {
         // skip, invalid validation
         expect(false)->toBeTrue();
-    })->else(function($err) use ($val) {
+    })->else(function ($err) use ($val) {
         expect($val->is_valid())->toBeFalse();
     });
-
 });
 
 it('can validate nesting array', function () {

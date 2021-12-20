@@ -14,7 +14,6 @@ use Validator\Rule\ValidPool;
  */
 final class Validator
 {
-    /** @var Rule */
     private Rule $Rule;
 
     /** @var string[] */
@@ -70,7 +69,7 @@ final class Validator
     }
 
     /**
-     * Set fields or input for validation
+     * Set fields or input for validation.
      *
      * @param string[] $fileds Field array to validate
      */
@@ -81,8 +80,6 @@ final class Validator
 
     /**
      * Process the validation errors and return an array of errors with field names as keys.
-     *
-     * @return array
      */
     public function get_error(): array
     {
@@ -93,7 +90,7 @@ final class Validator
      * Inline validation field.
      *
      * @param \Closure|null $rule_validation Closure with param as ValidPool,
-     * if null return validate this currect validation
+     *                                       if null return validate this currect validation
      */
     public function is_valid(?Closure $rule_validation = null): bool
     {
@@ -124,7 +121,7 @@ final class Validator
 
     /**
      * Execute closuer when validation is true,
-     * and return else statment
+     * and return else statment.
      *
      * @param Closure $condition Excute closure
      */
@@ -134,6 +131,7 @@ final class Validator
 
         if ($val === true) {
             call_user_func($condition);
+
             return new ValidationCondition([]);
         }
 
@@ -141,24 +139,25 @@ final class Validator
     }
 
     /**
-     * Run validation, and throw error when false
+     * Run validation, and throw error when false.
      *
      * @param \Exception|null $exception Default throw exception
      *
      * @throws Exception
+     *
      * @return bool Return true if validation valid
      */
     public function validOrException(Exception $exception = null)
     {
         if ($this->Rule->validate($this->fields, $this->validations) === false) {
-            throw $exception ?? new Exception("vaildate if fallen");
+            throw $exception ?? new Exception('vaildate if fallen');
         }
 
         return true;
     }
 
     /**
-     * Run validation, and get error when false
+     * Run validation, and get error when false.
      *
      * @return bool|array Return true if validation valid
      */
