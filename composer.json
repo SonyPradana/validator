@@ -10,8 +10,13 @@
         }
     ],
     "require": {
+        "wixel/gump": "^1.12",
         "php": "^7.4",
-        "wixel/gump": "^1.12"
+        "ext-mbstring": "*",
+        "ext-json": "*",
+        "ext-intl": "*",
+        "ext-bcmath": "*",
+        "ext-iconv": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16.4",
