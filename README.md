@@ -1,7 +1,7 @@
 # Validation
 
 Build validation with beautiful 
-power by [Wixel/GUMP] (https://github.com/Wixel/GUMP)
+power by [(Wixel/GUMP)](https://github.com/Wixel/GUMP)
 
 ```php
 $val = new Validator($_POST);
@@ -13,11 +13,11 @@ $val->field('name')->required()->validName();
 $val->if_valid(function() {
     // continue
 })->else(function($err) {
-    var_dump($error);
+    var_dump($err);
 });
 ```
 
-GUMP support
+**GUMP support**
 ```php
 $is_valid = GUMP::is_valid(array_merge($_POST, $_FILES), [
     'username' => vr()->required()->alpha_numeric(),
@@ -31,3 +31,58 @@ if ($is_valid === true) {
     var_dump($is_valid); // array of error messages
 }
 ```
+**Available method**
+
+- `required()`
+- `valid_email()`
+- `max_len()`
+- `min_len()`
+- `exact_len()`
+- `between_len()`
+- `alpha()`
+- `alpha_numeric()`
+- `alpha_numeric_space()`
+- `alpha_numeric_dash()`
+- `alpha_dash()`
+- `alpha_space()`
+- `numeric()`
+- `integer()`
+- `boolean()`
+- `float()`
+- `valid_url()`
+- `url_exists()`
+- `valid_ip()`
+- `valid_ipv4()`
+- `valid_ipv6()`
+- `guidv4()`
+- `valid_cc()`
+- `valid_name()`
+- `contains()`
+- `contains_list()`
+- `doesnt_contain_list()`
+- `street_address()`
+- `date()`
+- `min_numeric()`
+- `max_numeric()`
+- `min_age()`
+- `invalid()`
+- `starts()`
+- `extension()`
+- `required_file()`
+- `equalsfield()`
+- `iban()`
+- `phone_number()`
+- `regex()`
+- `valid_json_string()`
+- `valid_array_size_greater()`
+- `valid_array_size_lesser()`
+- `valid_array_size_equal()`
+- `valid_persian_name()`
+- `valid_eng_per_pas_name()`
+- `valid_persian_digit()`
+- `valid_persian_text()`
+- `valid_pashtu_text()`
+- `valid_twitter()`
+
+And
+- `not()`, for invert all available method
