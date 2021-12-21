@@ -12,12 +12,12 @@ namespace Validator\Traits;
 trait InvertValidationTrait
 {
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -27,12 +27,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -42,12 +42,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -57,12 +57,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -72,12 +72,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -87,12 +87,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -102,12 +102,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -117,12 +117,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -132,12 +132,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -147,12 +147,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -162,12 +162,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -177,12 +177,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -192,12 +192,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -207,12 +207,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -222,12 +222,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -237,12 +237,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -252,12 +252,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -267,12 +267,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -282,12 +282,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -297,12 +297,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -312,12 +312,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -327,12 +327,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -342,12 +342,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -357,12 +357,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -372,12 +372,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -387,12 +387,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -402,12 +402,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -417,12 +417,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -432,12 +432,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -447,12 +447,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -462,12 +462,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -477,12 +477,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -492,12 +492,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -507,12 +507,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -522,12 +522,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -537,12 +537,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -552,12 +552,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -567,12 +567,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -582,12 +582,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -597,12 +597,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -612,12 +612,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -627,12 +627,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -642,12 +642,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */
@@ -657,12 +657,12 @@ trait InvertValidationTrait
     }
 
     /**
-     * Invert with
+     * Invert with.
      *
-     * @param string $field
+     * @param string             $field
      * @param array<int, string> $input
      * @param array<int, string> $params
-     * @param mixed $value
+     * @param mixed              $value
      *
      * @return bool
      */

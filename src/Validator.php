@@ -84,6 +84,7 @@ final class Validator
      * Process the validation errors and return an array of errors with field names as keys.
      *
      * @return array<int, string> Validation errors
+     *
      * @throws Exception
      */
     public function get_error(): array

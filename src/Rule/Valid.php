@@ -482,7 +482,7 @@ final class Valid
      *
      * @param string $field_name Field value equals with
      */
-    public function equalsfield(string $field_name): self
+    public function equals_field(string $field_name): self
     {
         $this->validation_rule[] = 'equalsfield' . $this->parameters_delimiter . $field_name;
 
