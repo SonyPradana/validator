@@ -19,7 +19,7 @@ if (!function_exists('validate')) {
     /**
      * Alias for validator.
      *
-     * @param array $feild Feild input
+     * @param array<string> $feild Feild input
      *
      * @return \Validator\Validator
      */

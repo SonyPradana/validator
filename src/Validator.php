@@ -47,11 +47,11 @@ final class Validator
     /**
      * Add new valid rule.
      *
-     * @param string $name Field name
+     * @param string $field Field name
      *
      * @return Valid New rule Validation
      */
-    public function __invoke($field): Valid
+    public function __invoke(string $field): Valid
     {
         return $this->field($field);
     }
@@ -59,7 +59,7 @@ final class Validator
     /**
      * Add new valid rule.
      *
-     * @param string $name Field name
+     * @param string $field Field name
      *
      * @return Valid New rule Validation
      */
@@ -71,15 +71,20 @@ final class Validator
     /**
      * Set fields or input for validation.
      *
-     * @param string[] $fileds Field array to validate
+     * @param array<int, string> $fields Field array to validate
      */
-    public function fields(array $fields)
+    public function fields(array $fields): self
     {
         $this->fields = $fields;
+
+        return $this;
     }
 
     /**
      * Process the validation errors and return an array of errors with field names as keys.
+     *
+     * @return array<int, string> Validation errors
+     * @throws Exception
      */
     public function get_error(): array
     {
@@ -159,7 +164,7 @@ final class Validator
     /**
      * Run validation, and get error when false.
      *
-     * @return bool|array Return true if validation valid
+     * @return bool|array<int, string> Return true if validation valid
      */
     public function validOrError(Exception $exception = null)
     {

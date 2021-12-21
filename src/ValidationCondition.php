@@ -11,17 +11,17 @@ use Closure;
  */
 final class ValidationCondition
 {
-    /** @var array */
+    /** @var array<int, string> */
     private $error;
 
     /**
      * Helper for catch error validation from if_valid condition.
      *
-     * @param array Set error for else condition
+     * @param false|array<int, string> $error Set error for else condition
      */
-    public function __construct(array $error)
+    public function __construct($error)
     {
-        $this->error = $error;
+        $this->error = $error === false ? [] : $error;
     }
 
     /**

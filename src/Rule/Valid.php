@@ -20,8 +20,6 @@ final class Valid
     private $parameters_delimiter = ',';
     /** @var string */
     private $parameters_arrays_delimiter = ';';
-    /** @var bool */
-    private $is_invert = false;
 
     public function __construct()
     {
@@ -110,7 +108,7 @@ final class Valid
      * Verify that a value is contained within the pre-defined value set.
      * Error message will NOT show the list of possible values.
      *
-     * @param string[] ...$contain Contain
+     * @param string ...$contain Contain
      */
     public function contains_list(...$contain): self
     {
@@ -126,7 +124,7 @@ final class Valid
      * Verify that a value is contained within the pre-defined value set.
      * Error message will NOT show the list of possible values.
      *
-     * @param string[] ...$contain Contain
+     * @param string ...$contain Contain
      */
     public function doesnt_contain_list(...$contain): self
     {

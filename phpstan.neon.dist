@@ -2,5 +2,7 @@ parameters:
     level: max
     paths:
         - src
+    excludes_analyse:
+        - src/Traits/InvertValidationTrait.php
 
     reportUnmatchedIgnoredErrors: true
