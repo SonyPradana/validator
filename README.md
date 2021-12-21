@@ -1,3 +1,11 @@
+<p align="center">
+<img src="https://raw.githubusercontent.com/sonypradana/validator/master/docs/header.png" height="300" alt="Skeleton Php">
+    <p align="center">
+        <a href="https://packagist.org/packages/sonypradana/validator"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/sonypradana/validator"></a>
+        <a href="https://github.com/sonypradana/validator/actions"><img alt="Latest Version" src="https://img.shields.io/github/stars/SonyPradana/validator"></a>
+        <a href="https://github.com/SonyPradana/validator/blob/main/LICENSE.md"><img alt="License" src="https://img.shields.io/github/license/SonyPradana/validator"></a>
+    </p>
+</p>
 # Validation
 
 Build validation with beautiful 
@@ -6,9 +14,9 @@ power by [(Wixel/GUMP)](https://github.com/Wixel/GUMP)
 ```php
 $val = new Validator($_POST);
 
-$val->name->required()->validName();
-// or
 $val->field('name')->required()->validName();
+// or
+$val->name->required()->validName();
 
 $val->if_valid(function() {
     // continue
