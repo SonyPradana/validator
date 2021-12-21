@@ -1,7 +1,5 @@
 <?php
 
-use Validator\Validator;
-
 it('can render alpha validation', function () {
     expect(vr()->alpha())
         ->toEqual('alpha')
