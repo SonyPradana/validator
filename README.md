@@ -1,14 +1,15 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/sonypradana/validator/master/docs/header.png" height="300" alt="Skeleton Php">
+<img src="https://raw.githubusercontent.com/sonypradana/validator/master/docs/header.png" alt="elegant validator">
     <p align="center">
         <a href="https://packagist.org/packages/sonypradana/validator"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/sonypradana/validator"></a>
         <a href="https://github.com/sonypradana/validator/actions"><img alt="Latest Version" src="https://img.shields.io/github/stars/SonyPradana/validator"></a>
         <a href="https://github.com/SonyPradana/validator/blob/main/LICENSE.md"><img alt="License" src="https://img.shields.io/github/license/SonyPradana/validator"></a>
     </p>
 </p>
+
 # Validation
 
-Build validation with beautiful 
+Build validation with elegant,
 power by [(Wixel/GUMP)](https://github.com/Wixel/GUMP)
 
 ```php
@@ -21,11 +22,12 @@ $val->name->required()->validName();
 $val->if_valid(function() {
     // continue
 })->else(function($err) {
+    // array of error messages
     var_dump($err);
 });
 ```
 
-**GUMP support**
+### **GUMP support**
 ```php
 $is_valid = GUMP::is_valid(array_merge($_POST, $_FILES), [
     'username' => vr()->required()->alpha_numeric(),
@@ -36,10 +38,11 @@ $is_valid = GUMP::is_valid(array_merge($_POST, $_FILES), [
 if ($is_valid === true) {
     // continue
 } else {
-    var_dump($is_valid); // array of error messages
+    // array of error messages
+    var_dump($is_valid);
 }
 ```
-**Available method**
+### **Available method**
 
 - `required()`
 - `valid_email()`
@@ -85,12 +88,15 @@ if ($is_valid === true) {
 - `valid_array_size_greater()`
 - `valid_array_size_lesser()`
 - `valid_array_size_equal()`
-- `valid_persian_name()`
-- `valid_eng_per_pas_name()`
-- `valid_persian_digit()`
-- `valid_persian_text()`
-- `valid_pashtu_text()`
 - `valid_twitter()`
 
 And
 - `not()`, for invert all available method
+
+### ***Why use Validator***
+Why use valdidator over `GUMP` validator.
+- Avoid typo when building validator rule. When using validator may accidentally typing wrong validate rule (typo). It make runtime error.
+- Autocomplete out of the box. Auto complete validator rule and maintainable rule.
+
+### ***Todo***
+- Filter field output.
