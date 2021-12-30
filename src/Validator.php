@@ -6,6 +6,7 @@ namespace Validator;
 
 use Closure;
 use Exception;
+use Validator\Rule\Filter;
 use Validator\Rule\Valid;
 use Validator\Rule\ValidPool;
 
@@ -20,6 +21,8 @@ final class Validator
     private $fields      = [];
     /** @var Valid[] */
     private $validations = [];
+    /** @var Filter[] */
+    private $filters = [];
 
     /**
      * Create validation and filter.
@@ -69,15 +72,37 @@ final class Validator
     }
 
     /**
+     * Add new filter rule.
+     *
+     * @param string $field Field name
+     *
+     * @return Filter New rule filter
+     */
+    public function filter(string $field): Filter
+    {
+        return $this->filters[$field] = new Filter();
+    }
+
+    /**
      * Set fields or input for validation.
      *
-     * @param array<int, string> $fields Field array to validate
+     * @param array<string, string> $fields Field array to validate
      */
     public function fields(array $fields): self
     {
         $this->fields = $fields;
 
         return $this;
+    }
+
+    /**
+     * get fields or input validation.
+     *
+     * @return array<string, string> Fields
+     */
+    public function get_fields(): array
+    {
+        return $this->fields;
     }
 
     /**
@@ -170,5 +195,30 @@ final class Validator
     public function validOrError(Exception $exception = null)
     {
         return $this->Rule->validate($this->fields, $this->validations);
+    }
+
+    /**
+     * Filter the input data.
+     *
+     * @return mixed, string> Fields input after filter
+     */
+    public function filter_out()
+    {
+        return $this->Rule->filter($this->fields, $this->filters);
+    }
+
+    /**
+     * Run validation and filter if success.
+     *
+     * @return bool|mixed True if validation failed,
+     *                    array filter if validation valid
+     */
+    public function failedOrFilter()
+    {
+        if ($this->Rule->validate($this->fields, $this->validations) === true) {
+            return $this->filter_out();
+        }
+
+        return true;
     }
 }

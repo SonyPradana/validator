@@ -15,6 +15,17 @@ if (!function_exists('vr')) {
     }
 }
 
+if (!function_exists('fr')) {
+    /**
+     * Alias for filter rule,
+     * return string filter rule.
+     */
+    function fr(): Validator\Rule\Filter
+    {
+        return new \Validator\Rule\Filter();
+    }
+}
+
 if (!function_exists('validate')) {
     /**
      * Alias for validator.

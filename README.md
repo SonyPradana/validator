@@ -7,11 +7,12 @@
     </p>
 </p>
 
-# Validation
+# Validation & Filter
 
 Build validation with elegant,
 power by [(Wixel/GUMP)](https://github.com/Wixel/GUMP)
 
+## Validation
 ```php
 $val = new Validator($_POST);
 
@@ -93,10 +94,28 @@ if ($is_valid === true) {
 And
 - `not()`, for invert all available method
 
-### ***Why use Validator***
+## Filter
+Fiter field input
+```php
+$val = new Validator($_POST);
+
+$val->filter('name')->trim()->lowwer_case();
+
+// run filter
+$filter = $val->filter_out();
+```
+validation and filter
+```php
+$val = new Validator($_POST);
+
+$val->field('name')->required()->valid_name();
+$val->filter('name')->trim()->lowwer_case();
+
+// run validation and filter
+$filter = $val->failedOrFilter());
+```
+
+### **Why use Validator**
 Why use valdidator over `GUMP` validator.
 - Avoid typo when building validator rule. When using validator may accidentally typing wrong validate rule (typo). It make runtime error.
 - Autocomplete out of the box. Auto complete validator rule and maintainable rule.
-
-### ***Todo***
-- Filter field output.

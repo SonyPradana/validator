@@ -7,15 +7,15 @@ namespace Validator\Rule;
 /**
  * @internal
  */
-final class ValidPool
+final class FilterPool
 {
-    /** @var Valid[] */
+    /** @var Filter[] */
     private $pool = [];
 
     /**
-     * Get entry valid rule.
+     * Get entry filter rule.
      *
-     * @return Valid[] Valid rule
+     * @return Filter[] Filter rule
      */
     public function get_pool()
     {
@@ -23,23 +23,23 @@ final class ValidPool
     }
 
     /**
-     * Add new valid rule.
+     * Add new Filter rule.
      *
      * @param string $field Field name
      *
-     * @return Valid New rule Validation
+     * @return Filter New rule filter
      */
     public function rule(string $field)
     {
-        return $this->pool[$field] = new Valid();
+        return $this->pool[$field] = new Filter();
     }
 
     /**
-     * Add new valid rule.
+     * Add new filter rule.
      *
      * @param string $field Field name
      *
-     * @return Valid New rule Validation
+     * @return Filter New rule filter
      */
     public function __invoke(string $field)
     {
@@ -47,11 +47,11 @@ final class ValidPool
     }
 
     /**
-     * Add new valid rule.
+     * Add new filter rule.
      *
      * @param string $name Field name
      *
-     * @return Valid New rule Validation
+     * @return Filter New rule filter
      */
     public function __get($name)
     {
