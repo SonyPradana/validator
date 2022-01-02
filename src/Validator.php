@@ -7,6 +7,7 @@ namespace Validator;
 use Closure;
 use Exception;
 use Validator\Rule\Filter;
+use Validator\Rule\FilterPool;
 use Validator\Rule\Valid;
 use Validator\Rule\ValidPool;
 
@@ -23,6 +24,8 @@ final class Validator
     private $validations = [];
     /** @var Filter[] */
     private $filters = [];
+    /** @var bool Check rule validate has run or not */
+    private $has_run_validate = false;
 
     /**
      * Create validation and filter.
@@ -114,6 +117,11 @@ final class Validator
      */
     public function get_error(): array
     {
+        if (!$this->has_run_validate) {
+            $this->Rule->validate($this->fields, $this->validations);
+            $this->has_run_validate = true;
+        }
+
         return $this->Rule->get_errors_array();
     }
 
@@ -126,7 +134,9 @@ final class Validator
     public function is_valid(?Closure $rule_validation = null): bool
     {
         if ($rule_validation == null) {
-            return $this->Rule->is_valid($this->fields, $this->validations) !== true ? false : true;
+            $this->has_run_validate = true;
+
+            return $this->Rule->validate($this->fields, $this->validations) !== true ? false : true;
         }
 
         $rules = [];
@@ -180,11 +190,11 @@ final class Validator
      */
     public function validOrException(Exception $exception = null)
     {
-        if ($this->Rule->validate($this->fields, $this->validations) === false) {
-            throw $exception ?? new Exception('vaildate if fallen');
+        if ($this->Rule->validate($this->fields, $this->validations) === true) {
+            return true;
         }
 
-        return true;
+        throw $exception ?? new Exception('vaildate if fallen');
     }
 
     /**
@@ -202,9 +212,25 @@ final class Validator
      *
      * @return mixed, string> Fields input after filter
      */
-    public function filter_out()
+    public function filter_out(?Closure $rule_filter = null)
     {
-        return $this->Rule->filter($this->fields, $this->filters);
+        if ($rule_filter == null) {
+            return $this->Rule->filter($this->fields, $this->filters);
+        }
+
+        $rules_filter          = [];
+        $filter_pool           = new FilterPool();
+        $return_filter_closure = call_user_func_array($rule_filter, [$filter_pool]);
+        $get_filter_pool       = $return_filter_closure instanceof FilterPool
+            ? $return_filter_closure->get_pool()
+            : $filter_pool->get_pool()
+        ;
+
+        foreach ($get_filter_pool as $field => $rule) {
+            $rules_filter[$field] = $rule->get_filter();
+        }
+
+        return $this->Rule->filter($this->fields, $rules_filter);
     }
 
     /**
