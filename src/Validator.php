@@ -218,7 +218,8 @@ final class Validator
             return $this->Rule->filter($this->fields, $this->filters);
         }
 
-        $rules_filter          = [];
+        // overwrite input field
+        $rules_filter          = $this->fields;
         $filter_pool           = new FilterPool();
         $return_filter_closure = call_user_func_array($rule_filter, [$filter_pool]);
         $get_filter_pool       = $return_filter_closure instanceof FilterPool
@@ -226,6 +227,7 @@ final class Validator
             : $filter_pool->get_pool()
         ;
 
+        // replace input field with filter
         foreach ($get_filter_pool as $field => $rule) {
             $rules_filter[$field] = $rule->get_filter();
         }
