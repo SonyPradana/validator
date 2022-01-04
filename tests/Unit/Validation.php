@@ -140,7 +140,7 @@ it('can run filter using method filter_out', function () {
         'test2' => 'test'
     ]);
 
-    $valid->filter('test')->upper_case();
+    $valid->filter('test1')->upper_case();
 
     expect($valid->filter_out())
         ->toEqual([
