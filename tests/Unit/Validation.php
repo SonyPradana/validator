@@ -137,7 +137,7 @@ it('can run validation using method validOrError but not valid', function () {
 it('can run filter using method filter_out', function () {
     $valid = new Validator([
         'test1' => 'test',
-        'test2' => 'test'
+        'test2' => 'test',
     ]);
 
     $valid->filter('test1')->upper_case();
@@ -145,8 +145,26 @@ it('can run filter using method filter_out', function () {
     expect($valid->filter_out())
         ->toEqual([
             'test1' => 'TEST',
-            'test2' => 'test'
+            'test2' => 'test',
         ])
+    ;
+});
+
+it('can run filter using method filter_out without filter rules', function () {
+    $field = [
+        'test1' => 'test',
+        'test2' => 'test',
+        'files' => [
+            'test' => [
+                'name'  => 'test',
+                'error' => 4,
+            ],
+        ],
+    ];
+
+    $valid = new Validator($field);
+
+    expect($valid->filter_out())->toEqual($field)
     ;
 });
 
