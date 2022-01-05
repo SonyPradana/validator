@@ -5,8 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add method `clear_unused_rule()` to remove unused validation and filter rule.
+- Add method `get_validations()` and `get_filters()`.
+
 ### Fixed
-- `filter_out` return merge with fields.
+- `filter_out()` return merge with fields.
 
 ## [0.2.1] - 2022-01-02
 ### Added

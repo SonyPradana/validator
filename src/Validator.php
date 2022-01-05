@@ -249,4 +249,38 @@ final class Validator
 
         return true;
     }
+
+    /**
+     * Remove validation and filter rule, when not in fields input.
+     */
+    public function clear_unused_rule(): self
+    {
+        // remove unuse validation rule
+        $this->validations = array_filter($this->validations, fn($field) => in_array($field, $this->fields));
+        
+        // remove unuse filter rule
+        $this->filters = array_filter($this->filters, fn($field) => in_array($field, $this->fields));
+
+        return $this;
+    }
+
+    /** 
+     * Get validations rule.
+     * 
+     * @return Valid[] Validations rule
+     */
+    public function get_validations(): array
+    {
+        return $this->validations;
+    }
+
+    /** 
+     * Get filters rule.
+     * 
+     * @return Filter[] Filters rule
+     */
+    public function get_filters(): array
+    {
+        return $this->filters;
+    }
 }

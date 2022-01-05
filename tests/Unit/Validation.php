@@ -259,3 +259,28 @@ it('can get error message when valadation is fallen using method validOrError', 
 
     expect($valid->validOrError())->toHaveCount(1);
 });
+
+// romove unuse rule
+it('can remove unuse validation and filter rule', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->field('no_test')->required();
+    $valid->filter('no_test')->upper_case();
+    
+    // reomove unuse rule
+    $valid->clear_unused_rule();
+
+    expect($valid->get_validations())->toHaveCount(0);
+    expect($valid->get_filters())->toHaveCount(0);
+});
+
+// check validation and filter rule
+it('can remove unuse validation and filter rule', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->field('no_test')->required();
+    $valid->filter('no_test')->upper_case();
+    
+    expect($valid->get_validations())->toHaveProperties('no_test');
+    expect($valid->get_filters())->toHaveProperties('no_test')
+});
