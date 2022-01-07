@@ -249,4 +249,17 @@ final class Validator
 
         return true;
     }
+
+    /**
+     * Change language for error messages.
+     * Can effect before run validation or filter.
+     *
+     * @param string $lang Language
+     */
+    public function lang(string $lang): self
+    {
+        $this->Rule->lang($lang);
+
+        return $this;
+    }
 }

@@ -13,4 +13,17 @@ use Validator\Traits\InvertValidationTrait;
 final class Rule extends GUMP
 {
     use InvertValidationTrait;
+
+    /**
+     * Change language for error messages.
+     * Can effect before run validation or filter.
+     *
+     * @param string $lang Language
+     */
+    public function lang(string $lang): self
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
 }
