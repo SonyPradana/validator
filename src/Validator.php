@@ -161,6 +161,20 @@ final class Validator
     }
 
     /**
+     * Inline validation field.
+     * Invert from is_valid.
+     *
+     * @param \Closure|null $rule_validation Closure with param as ValidPool,
+     *                                       if null return validate this currect validation
+     *
+     * @return bool True if have a error
+     */
+    public function is_error(?Closure $rule_validation = null): bool
+    {
+        return !$this->is_valid($rule_validation);
+    }
+
+    /**
      * Execute closuer when validation is true,
      * and return else statment.
      *

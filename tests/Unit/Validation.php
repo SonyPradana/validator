@@ -133,6 +133,15 @@ it('can run validation using method validOrError but not valid', function () {
     expect($valid->validOrError())->toBeArray();
 });
 
+test('method is_error is invert as is_valid', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->test->required();
+
+    expect($valid->is_error())->toBeFalse();
+    expect($valid->is_error())->not->toEqual($valid->is_valid());
+});
+
 // run filter
 it('can run filter using method filter_out', function () {
     $valid = new Validator([

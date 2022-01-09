@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Add costume validation error messaage `Rule::set_error_message` and `Rule::set_error_messages`.
+- Add method `is_error()` check validataion have error.
 
 ### Fixed
 - Costume validator does not have an error message. When using method `not()` on validation.
