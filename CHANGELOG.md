@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add costume validation error messaage `Rule::set_error_message` and `Rule::set_error_messages`.
 - Add method `is_error()` check validataion have error.
+- Support add multy rule field in single method. `$validation->field('field1', 'field2')` and `$validation->filter('field1', 'field2')`. Also work in `validPool::class` and `filterPool::class`
 
 ### Fixed
 - Costume validator does not have an error message. When using method `not()` on validation.

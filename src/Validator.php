@@ -57,9 +57,9 @@ final class Validator
      *
      * @return Valid New rule Validation
      */
-    public function __invoke(string $field): Valid
+    public function __invoke(string ...$field): Valid
     {
-        return $this->field($field);
+        return $this->field(...$field);
     }
 
     /**
@@ -69,9 +69,26 @@ final class Validator
      *
      * @return Valid New rule Validation
      */
-    public function field(string $field): Valid
+    public function field(string ...$field): Valid
     {
-        return $this->validations[$field] = new Valid();
+        return $this->set_field_rule(new Valid(), $field);
+    }
+
+    /**
+     * Helper to add multy rule in single method.
+     *
+     * @param Valid              $valid  Instans for new validation rule
+     * @param array<int, string> $fields Fields name
+     *
+     * @return Valid Rule Validation base from param
+     */
+    private function set_field_rule(Valid $valid, array $fields): Valid
+    {
+        foreach ($fields as $field) {
+            $this->validations[$field] = $valid;
+        }
+
+        return $valid;
     }
 
     /**
@@ -81,9 +98,26 @@ final class Validator
      *
      * @return Filter New rule filter
      */
-    public function filter(string $field): Filter
+    public function filter(string ...$field): Filter
     {
-        return $this->filters[$field] = new Filter();
+        return $this->set_filter_rule(new Filter(), $field);
+    }
+
+    /**
+     * Helper to add multy filter rule in single method.
+     *
+     * @param Filter             $valid   Instans for new filter rule
+     * @param array<int, string> $filters Fields name
+     *
+     * @return Filter Rule filter base from param
+     */
+    private function set_filter_rule(Filter $valid, array $filters): Filter
+    {
+        foreach ($filters as $filter) {
+            $this->filters[$filter] = $valid;
+        }
+
+        return $valid;
     }
 
     /**
