@@ -3,14 +3,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
 ## [Unreleased]
+### Added
+- Add costume validation error messaage `Rule::set_error_message` and `Rule::set_error_messages`.
+
+### Fixed
+- Costume validator does not have an error message. When using method `not()` on validation.
 
 ## [0.2.2] - 2022-01-08
 ### Added
 - Add method `lang()` to change language error message.
 
 ### Fixed
-- `filter_out` return merge with fields.
+- `filter_out()` return merge with fields.
 
 ## [0.2.1] - 2022-01-02
 ### Added

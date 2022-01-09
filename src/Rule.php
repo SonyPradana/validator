@@ -26,4 +26,21 @@ final class Rule extends GUMP
 
         return $this;
     }
+
+    /**
+     * Get all error messages.
+     *
+     * @return array<string, string>
+     */
+    protected function get_messages()
+    {
+        $messages = parent::get_messages();
+
+        // add inveret costume validate message
+        foreach ($messages as $rule => $message) {
+            $messages['invert_' . $rule] = $message;
+        }
+
+        return $messages;
+    }
 }
