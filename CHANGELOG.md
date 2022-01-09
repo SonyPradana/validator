@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.3.0] - 2022-01-09
 ### Added
 - Add costume validation error messaage `Rule::set_error_message` and `Rule::set_error_messages`.
 - Add method `is_error()` check validataion have error.
