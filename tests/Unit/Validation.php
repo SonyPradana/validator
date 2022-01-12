@@ -326,3 +326,13 @@ it('can add multy filter using method filter', function () {
         ['test' => 'test', 'test2' => 'test']
     );
 });
+
+// other property
+it('property \'not\' same result with method \'not()\'', function () {
+    $val = new Validator();
+
+    $val->field('test')->not->required();
+    $val->test2->not->required();
+
+    expect($val->is_valid())->toBeTrue();
+});

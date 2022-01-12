@@ -8,6 +8,8 @@ use Validator\Rule;
 
 /**
  * @internal
+ *
+ * @property self $not
  */
 final class Valid
 {
@@ -65,6 +67,22 @@ final class Valid
     public function __toString(): string
     {
         return $this->get_validation();
+    }
+
+    /**
+     * Access method from property.
+     *
+     * @param string $name Name of property or method
+     *
+     * @return self
+     */
+    public function __get($name)
+    {
+        if ($name === 'not') {
+            return $this->not();
+        }
+
+        return $this;
     }
 
     /**

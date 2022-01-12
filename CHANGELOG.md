@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add property `not` same result with method `not()`.
 
 ## [0.3.0] - 2022-01-09
 ### Added
