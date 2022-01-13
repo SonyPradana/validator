@@ -126,6 +126,13 @@ it('can run validation using method validOrException', function () {
     expect($valid->validOrException())->toBeTrue();
 });
 
+it('can run validation using method validOrException but not valid', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->test->required()->min_len(5);
+    $valid->validOrException();
+})->throws('vaildate if fallen');
+
 it('can run validation using method validOrError', function () {
     $valid = new Validator(['test' => 'test']);
 

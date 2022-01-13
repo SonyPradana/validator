@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add property `not` same result with method `not()`.
 - Add validation (rule) condition `where()`, only execute rule validation if condition as true.
 
+### Fixed
+- Fix method `validOrException()` can't throw Exception.
+
 ## [0.3.0] - 2022-01-09
 ### Added
 - Add costume validation error messaage `Rule::set_error_message` and `Rule::set_error_messages`.

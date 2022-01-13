@@ -242,7 +242,7 @@ final class Validator
             return true;
         }
 
-        throw $exception ?? new Exception('vaildate if fallen');
+        throw $exception ?? new Exception('vaildate if fallen', 1);
     }
 
     /**
