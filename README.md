@@ -92,7 +92,8 @@ if ($is_valid === true) {
 - `valid_twitter()`
 
 And
-- `not()`, for invert all available method
+- `not()`, for invert all available method.
+- `where($condition)`, execute rule if condition true.
 
 ## Filter
 Fiter field input

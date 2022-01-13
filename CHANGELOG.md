@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Add property `not` same result with method `not()`.
+- Add validation (rule) condition `where()`, only execute rule validation if condition as true.
 
 ## [0.3.0] - 2022-01-09
 ### Added

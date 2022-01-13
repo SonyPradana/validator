@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Validator\Rule;
 
+use Closure;
+use Exception;
 use Validator\Rule;
 
 /**
@@ -93,6 +95,32 @@ final class Valid
         $this->validation_rule[] = 'invert';
 
         return $this;
+    }
+
+    /**
+     * Rule will be applay if condition is true,
+     * otherwise rule be reset (not set) if return false.
+     *
+     * Reset only boolean false.
+     *
+     * @param Closure $condition Closure return boolean (default false)
+     */
+    public function where(Closure $condition): string
+    {
+        // default is false
+        $result = call_user_func_array($condition, []);
+
+        if (!is_bool($result)) {
+            throw new Exception('Condition closure not return boolean', 1);
+        }
+
+        // false condtion and not bool return will reset Rule
+        if ($result === false) {
+            $this->validation_rule = [];
+        }
+
+        // prevent create new rule and give a string rule
+        return $this->get_validation();
     }
 
     // -------------------------------------------------------
