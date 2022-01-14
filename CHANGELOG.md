@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Add property `not` same result with method `not()`.
-- Add validation (rule) condition `where()`, only execute rule validation if condition as true.
+- Add validation (rule) condition `where()`, only execute rule validation if condition as true (left side validation).
+- Add validation (rule) condition `if()`, only execute rule validation if condition as true (right side validation).
+- Add new validation `validate_`, check field is contain in input field. This validation also prevent from error when validation rule is empty.
 
 ### Fixed
 - Fix method `validOrException()` can't throw Exception.
+- Prevent error when validation rule is empty, by adding new validation `validate_()`.
 
 ## [0.3.0] - 2022-01-09
 ### Added

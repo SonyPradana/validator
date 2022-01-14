@@ -343,3 +343,18 @@ it('property \'not\' same result with method \'not()\'', function () {
 
     expect($val->is_valid())->toBeTrue();
 });
+
+// valdation rule
+it('empty rule not make runtime error', function () {
+    $valid = new Validator(['test' => 'test']);
+    // set empty rull
+    $valid->field('test');
+    expect($valid->is_valid())->toBeTrue();
+});
+
+it('\'not\' rule not make runtime error', function () {
+    $valid = new Validator(['test' => 'test']);
+    // set empty rull
+    $valid->field('test')->not();
+    expect($valid->is_valid())->toBeTrue();
+});
