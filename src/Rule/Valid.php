@@ -192,8 +192,6 @@ final class Valid
 
     /**
      * Verify that a value is contained within the pre-defined value set.
-     *
-     * @param string[] ...$contain Contain
      */
     public function contains(string ...$contain): self
     {
@@ -564,8 +562,6 @@ final class Valid
     /**
      * Check the uploaded file for extension.
      * Doesn't check mime-type yet.
-     *
-     * @param string ...$extension Extension without dot
      */
     public function extension(string ...$extension): self
     {
