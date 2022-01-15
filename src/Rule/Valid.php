@@ -562,6 +562,8 @@ final class Valid
     /**
      * Check the uploaded file for extension.
      * Doesn't check mime-type yet.
+     *
+     * @param string $extension Extention without dot
      */
     public function extension(string ...$extension): self
     {
@@ -629,6 +631,8 @@ final class Valid
 
     /**
      * Check if an input is an array and if the size is more or equal to a specific value.
+     *
+     * @param int $array_size Array dept size
      */
     public function valid_array_size_greater(int $array_size): self
     {
@@ -639,6 +643,8 @@ final class Valid
 
     /**
      * Check if an input is an array and if the size is less or equal to a specific value.
+     *
+     * @param int $array_size Array dept size
      */
     public function valid_array_size_lesser(int $array_size): self
     {
@@ -649,6 +655,8 @@ final class Valid
 
     /**
      * Check if an input is an array and if the size is equal to a specific value.
+     *
+     * @param int $array_size Array dept size
      */
     public function valid_array_size_equal(int $array_size): self
     {
