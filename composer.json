@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.4.0",
-        "pestphp/pest": "^0.3.19",
+        "pestphp/pest": "^1.21",
         "phpstan/phpstan": "^1.2.0",
         "symfony/var-dumper": "^5.4.1"
     },

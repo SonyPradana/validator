@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Validator\Rule;
 
+use Closure;
+use Exception;
 use Validator\Rule;
 
 /**
  * @internal
+ *
+ * @property self $not
  */
 final class Valid
 {
@@ -44,14 +48,32 @@ final class Valid
     public function get_validation(): string
     {
         $is_invert       = false;
+        $is_block_if     = false;
         $validation_rule = [];
 
         foreach ($this->validation_rule as $rule) {
-            if ($rule == 'invert') {
+            // detect if condition
+            if ($rule === 'if_false') {
+                $is_block_if = true;
+                continue;
+            }
+            if ($rule === 'if_true' || $rule === 'end_if') {
+                // break if statment
+                $is_block_if = false;
+                continue;
+            }
+            // block rule if statment is false
+            if ($is_block_if === true) {
+                continue;
+            }
+
+            // set next rule as invert rule
+            if ($rule === 'invert') {
                 $is_invert = !$is_invert;
                 continue;
             }
 
+            // add string rule and reset invert rule
             $validation_rule[] = $is_invert ? 'invert_' . $rule : $rule;
             $is_invert         = false;
         }
@@ -68,11 +90,89 @@ final class Valid
     }
 
     /**
+     * Access method from property.
+     *
+     * @param string $name Name of property or method
+     *
+     * @return self
+     */
+    public function __get($name)
+    {
+        if ($name === 'not') {
+            return $this->not();
+        }
+
+        return $this;
+    }
+
+    /**
      * Set validation to invert result.
      */
     public function not(): self
     {
         $this->validation_rule[] = 'invert';
+
+        return $this;
+    }
+
+    /**
+     * Rule will be applay if condition is true,
+     * otherwise rule be reset (not set) if return false.
+     *
+     * Reset only boolean false.
+     *
+     * @param Closure $condition Closure return boolean
+     */
+    public function where(Closure $condition): string
+    {
+        // get return closure
+        $result = call_user_func_array($condition, []);
+        // throw exception if closure not return boolean
+        if (!is_bool($result)) {
+            throw new Exception('Condition closure not return boolean', 1);
+        }
+
+        // false condition
+        if ($result === false) {
+            $this->validation_rule = [];
+        }
+
+        // prevent create new rule and give a string rule
+        return $this->get_validation();
+    }
+
+    /**
+     * Rule will be applay if condition is true,
+     * otherwise rule be skip if return false.
+     *
+     * Reset only boolean false.
+     *
+     * @param Closure $condition Closure return boolean
+     */
+    public function if(Closure $condition): self
+    {
+        // get return closure
+        $result = call_user_func_array($condition, []);
+        // throw exception if closure not return boolean
+        if (!is_bool($result)) {
+            throw new Exception('Condition closure not return boolean', 1);
+        }
+
+        // add condition to rule
+        $this->validation_rule[] = $result
+            ? 'if_true'
+            : 'if_false'
+        ;
+
+        return $this;
+    }
+
+    /**
+     * Set end rule of 'if' statment.
+     */
+    public function end_if(): self
+    {
+        $this->validation_rule[] = 'end_if';
 
         return $this;
     }
@@ -92,8 +192,6 @@ final class Valid
 
     /**
      * Verify that a value is contained within the pre-defined value set.
-     *
-     * @param string[] ...$contain Contain
      */
     public function contains(string ...$contain): self
     {
@@ -465,7 +563,7 @@ final class Valid
      * Check the uploaded file for extension.
      * Doesn't check mime-type yet.
      *
-     * @param string ...$extension Extension without dot
+     * @param string $extension Extention without dot
      */
     public function extension(string ...$extension): self
     {
@@ -533,6 +631,8 @@ final class Valid
 
     /**
      * Check if an input is an array and if the size is more or equal to a specific value.
+     *
+     * @param int $array_size Array dept size
      */
     public function valid_array_size_greater(int $array_size): self
     {
@@ -543,6 +643,8 @@ final class Valid
 
     /**
      * Check if an input is an array and if the size is less or equal to a specific value.
+     *
+     * @param int $array_size Array dept size
      */
     public function valid_array_size_lesser(int $array_size): self
     {
@@ -553,6 +655,8 @@ final class Valid
 
     /**
      * Check if an input is an array and if the size is equal to a specific value.
+     *
+     * @param int $array_size Array dept size
      */
     public function valid_array_size_equal(int $array_size): self
     {
