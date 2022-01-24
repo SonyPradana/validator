@@ -71,12 +71,18 @@ it('can run validation using method is_valid with closure (param)', function () 
         'test1' => 'test',
         'test2' => 'test',
         'test3' => 'test',
+        'test4' => 'test',
+        'test5' => 'test',
+        'test6' => 'test',
+        'test7' => 'test',
     ]);
 
     expect($valid->is_valid(function (ValidPool $pool) {
         $pool->rule('test1')->required();
         $pool('test2')->required();
         $pool->test3->required();
+        $pool->rule('test4', 'test5')->required();
+        $pool('test6', 'test7')->required();
     }))->toBeTrue();
 });
 
@@ -85,6 +91,8 @@ it('can run validation using method is_valid with closure (return)', function ()
         'test1' => 'test',
         'test2' => 'test',
         'test3' => 'test',
+        'test4' => 'test',
+        'test5' => 'test',
     ]);
 
     expect($valid->is_valid(function () {
@@ -92,6 +100,7 @@ it('can run validation using method is_valid with closure (return)', function ()
         $pool->rule('test1')->required();
         $pool('test2')->required();
         $pool->test3->required();
+        $pool->rule('test4', 'test5')->required();
 
         return $pool;
     }))->toBeTrue();
@@ -117,6 +126,13 @@ it('can run validation using method validOrException', function () {
     expect($valid->validOrException())->toBeTrue();
 });
 
+it('can run validation using method validOrException but not valid', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->test->required()->min_len(5);
+    $valid->validOrException();
+})->throws('vaildate if fallen');
+
 it('can run validation using method validOrError', function () {
     $valid = new Validator(['test' => 'test']);
 
@@ -131,6 +147,15 @@ it('can run validation using method validOrError but not valid', function () {
     $valid->test->required()->min_len(5);
 
     expect($valid->validOrError())->toBeArray();
+});
+
+test('method is_error is invert as is_valid', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->test->required();
+
+    expect($valid->is_error())->toBeFalse();
+    expect($valid->is_error())->not->toEqual($valid->is_valid());
 });
 
 // run filter
@@ -173,6 +198,10 @@ it('can run filter using method filter_out with closure (param)', function () {
         'test1' => 'test',
         'test2' => ' test ',
         'test3' => 'TEST',
+        'test4' => ' test ',
+        'test5' => ' test ',
+        'test6' => ' test ',
+        'test7' => ' test ',
     ]);
 
     expect(
@@ -180,11 +209,17 @@ it('can run filter using method filter_out with closure (param)', function () {
             $pool->rule('test1')->upper_case();
             $pool->test2->trim();
             $pool('test3')->lower_case();
+            $pool->rule('test4', 'test5')->trim();
+            $pool('test6', 'test7')->trim();
         })
     )->toEqual([
         'test1' => 'TEST',
         'test2' => 'test',
         'test3' => 'test',
+        'test4' => 'test',
+        'test5' => 'test',
+        'test6' => 'test',
+        'test7' => 'test',
     ]);
 });
 
@@ -193,6 +228,10 @@ it('can run filter using method filter_out with closure (return)', function () {
         'test1' => 'test',
         'test2' => ' test ',
         'test3' => 'TEST',
+        'test4' => ' test ',
+        'test5' => ' test ',
+        'test6' => ' test ',
+        'test7' => ' test ',
     ]);
 
     expect(
@@ -201,6 +240,8 @@ it('can run filter using method filter_out with closure (return)', function () {
             $pool->rule('test1')->upper_case();
             $pool->test2->trim();
             $pool('test3')->lower_case();
+            $pool->rule('test4', 'test5')->trim();
+            $pool('test6', 'test7')->trim();
 
             return $pool;
         })
@@ -208,6 +249,10 @@ it('can run filter using method filter_out with closure (return)', function () {
         'test1' => 'TEST',
         'test2' => 'test',
         'test3' => 'test',
+        'test4' => 'test',
+        'test5' => 'test',
+        'test6' => 'test',
+        'test7' => 'test',
     ]);
 });
 
@@ -258,4 +303,58 @@ it('can get error message when valadation is fallen using method validOrError', 
     $valid->field('test')->min_len(5);
 
     expect($valid->validOrError())->toHaveCount(1);
+});
+
+// can add multi validate rule
+it('can add multy field using method field', function () {
+    $valid = new Validator(['test' => 'test', 'test2' => 'test']);
+
+    $valid->field('test', 'test2')->required();
+
+    expect($valid->is_valid())->toBeTrue();
+});
+
+it('can add multy field using method __invoke', function () {
+    $valid = new Validator(['test' => 'test', 'test2' => 'test']);
+
+    $valid('test', 'test2')->required();
+
+    expect($valid->is_valid())->toBeTrue();
+});
+
+// can add multi filter rule
+it('can add multy filter using method filter', function () {
+    $valid = new Validator(['test' => ' test ', 'test2' => ' test ']);
+
+    $valid->field('test', 'test2')->required();
+    $valid->filter('test', 'test2')->trim();
+
+    expect($valid->filter_out())->toMatchArray(
+        ['test' => 'test', 'test2' => 'test']
+    );
+});
+
+// other property
+it('property \'not\' same result with method \'not()\'', function () {
+    $val = new Validator();
+
+    $val->field('test')->not->required();
+    $val->test2->not->required();
+
+    expect($val->is_valid())->toBeTrue();
+});
+
+// valdation rule
+it('empty rule not make runtime error', function () {
+    $valid = new Validator(['test' => 'test']);
+    // set empty rull
+    $valid->field('test');
+    expect($valid->is_valid())->toBeTrue();
+});
+
+it('\'not\' rule not make runtime error', function () {
+    $valid = new Validator(['test' => 'test']);
+    // set empty rull
+    $valid->field('test')->not();
+    expect($valid->is_valid())->toBeTrue();
 });

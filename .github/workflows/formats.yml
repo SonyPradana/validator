@@ -30,7 +30,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php }}
-        extensions: dom, mbstring, zip, intl
+        extensions: dom, mbstring, zip, intl, json, bcmath, iconv
         tools: prestissimo
         coverage: pcov
 

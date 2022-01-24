@@ -29,9 +29,9 @@ final class FilterPool
      *
      * @return Filter New rule filter
      */
-    public function rule(string $field)
+    public function rule(string ...$field)
     {
-        return $this->pool[$field] = new Filter();
+        return $this->set_filter_rule(new Filter(), $field);
     }
 
     /**
@@ -41,9 +41,9 @@ final class FilterPool
      *
      * @return Filter New rule filter
      */
-    public function __invoke(string $field)
+    public function __invoke(string ...$field)
     {
-        return $this->rule($field);
+        return $this->rule(...$field);
     }
 
     /**
@@ -56,5 +56,22 @@ final class FilterPool
     public function __get($name)
     {
         return $this->rule($name);
+    }
+
+    /**
+     * Helper to add multy filter rule in single method.
+     *
+     * @param Filter             $valid   Instans for new filter rule
+     * @param array<int, string> $filters Fields name
+     *
+     * @return Filter Rule filter base from param
+     */
+    private function set_filter_rule(Filter $valid, array $filters): Filter
+    {
+        foreach ($filters as $filter) {
+            $this->pool[$filter] = $valid;
+        }
+
+        return $valid;
     }
 }
