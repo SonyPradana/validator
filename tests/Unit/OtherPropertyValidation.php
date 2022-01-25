@@ -1,4 +1,5 @@
 <?php
+
 use Validator\Validator;
 
 // other property

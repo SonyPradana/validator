@@ -1,6 +1,5 @@
 <?php
 
-use Validator\Rule\Filter;
 use Validator\Rule\Valid;
 
 it('can render validation string using chain method', function () {

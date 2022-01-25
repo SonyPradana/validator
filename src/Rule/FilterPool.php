@@ -61,8 +61,8 @@ final class FilterPool
     /**
      * Helper to add multy filter rule in single method.
      *
-     * @param Filter             $valid   Instans for new filter rule
-     * @param array<int, string> $filters Fields name
+     * @param Filter                    $valid   Instans for new filter rule
+     * @param array<int|string, string> $filters Fields name
      *
      * @return Filter Rule filter base from param
      */

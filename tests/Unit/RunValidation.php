@@ -1,7 +1,7 @@
 <?php
 
-use Validator\Validator;
 use Validator\Rule\ValidPool;
+use Validator\Validator;
 
 // run validation
 it('can run validation using method is_valid', function () {
