@@ -77,8 +77,8 @@ final class Validator
     /**
      * Helper to add multy rule in single method.
      *
-     * @param Valid              $valid  Instans for new validation rule
-     * @param array<int, string> $fields Fields name
+     * @param Valid                     $valid  Instans for new validation rule
+     * @param array<int|string, string> $fields Fields name
      *
      * @return Valid Rule Validation base from param
      */
@@ -106,8 +106,8 @@ final class Validator
     /**
      * Helper to add multy filter rule in single method.
      *
-     * @param Filter             $valid   Instans for new filter rule
-     * @param array<int, string> $filters Fields name
+     * @param Filter                    $valid   Instans for new filter rule
+     * @param array<int|string, string> $filters Fields name
      *
      * @return Filter Rule filter base from param
      */

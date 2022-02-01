@@ -61,8 +61,8 @@ final class ValidPool
     /**
      * Helper to add multy rule in single method.
      *
-     * @param Valid              $valid  Instans for new validation rule
-     * @param array<int, string> $fields Fields name
+     * @param Valid                     $valid  Instans for new validation rule
+     * @param array<int|string, string> $fields Fields name
      *
      * @return Valid Rule Validation base from param
      */
