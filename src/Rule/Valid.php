@@ -106,6 +106,24 @@ final class Valid
     }
 
     /**
+     * Call function may have alias.
+     *
+     * @param string             $name      Methods name
+     * @param array<int, string> $arguments Params method
+     *
+     * @return self
+     */
+    public function __call($name, $arguments)
+    {
+        // backwards compatible until ver 1.x.x
+        if ($name === 'equals_field') {
+            $this->equalsfield($arguments[0]);
+        }
+
+        return $this;
+    }
+
+    /**
      * Set validation to invert result.
      */
     public function not(): self
