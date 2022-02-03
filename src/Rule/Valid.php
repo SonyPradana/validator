@@ -203,7 +203,7 @@ final class Valid
      */
     public function required(): self
     {
-        $this->validation_rule[] = (string) 'required';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -215,7 +215,7 @@ final class Valid
     {
         $str_contain             = implode($this->parameters_arrays_delimiter, $contain);
         $delimeter               = $this->parameters_delimiter;
-        $this->validation_rule[] = (string) "contains$delimeter$str_contain";
+        $this->validation_rule[] = __FUNCTION__ . "$delimeter$str_contain";
 
         return $this;
     }
@@ -231,7 +231,7 @@ final class Valid
         $str_contain = implode($this->parameters_arrays_delimiter, $contain);
 
         $delimeter               = $this->parameters_delimiter;
-        $this->validation_rule[] = (string) "contains_list$delimeter$str_contain";
+        $this->validation_rule[] = __FUNCTION__ . "$delimeter$str_contain";
 
         return $this;
     }
@@ -247,7 +247,7 @@ final class Valid
         $str_contain = implode($this->parameters_arrays_delimiter, $contain);
 
         $delimeter               = $this->parameters_delimiter;
-        $this->validation_rule[] = (string) "doesnt_contain_list$delimeter$str_contain";
+        $this->validation_rule[] = __FUNCTION__ . "$delimeter$str_contain";
 
         return $this;
     }
@@ -262,7 +262,7 @@ final class Valid
     public function boolean(bool $strict = true): self
     {
         $use_strict              = $strict ? $this->parameters_delimiter . 'strict' : '';
-        $this->validation_rule[] = (string) "boolean$use_strict";
+        $this->validation_rule[] = __FUNCTION__ . "$use_strict";
 
         return $this;
     }
@@ -272,7 +272,7 @@ final class Valid
      */
     public function valid_email(): self
     {
-        $this->validation_rule[] = 'valid_email';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -284,7 +284,7 @@ final class Valid
      */
     public function max_len(int $len): self
     {
-        $this->validation_rule[] = 'max_len' . $this->parameters_delimiter . $len;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $len;
 
         return $this;
     }
@@ -296,7 +296,7 @@ final class Valid
      */
     public function min_len(int $len): self
     {
-        $this->validation_rule[] = 'min_len' . $this->parameters_delimiter . $len;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $len;
 
         return $this;
     }
@@ -308,7 +308,7 @@ final class Valid
      */
     public function exact_len(int $len): self
     {
-        $this->validation_rule[] = 'exact_len' . $this->parameters_delimiter . $len;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $len;
 
         return $this;
     }
@@ -321,7 +321,7 @@ final class Valid
      */
     public function between_len(int $min_len, int $max_len): self
     {
-        $this->validation_rule[] = 'between_len' . $this->parameters_delimiter . $min_len . $this->parameters_arrays_delimiter . $max_len;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $min_len . $this->parameters_arrays_delimiter . $max_len;
 
         return $this;
     }
@@ -331,7 +331,7 @@ final class Valid
      */
     public function alpha(): self
     {
-        $this->validation_rule[] = 'alpha';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -341,7 +341,7 @@ final class Valid
      */
     public function alpha_numeric(): self
     {
-        $this->validation_rule[] = 'alpha_numeric';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -351,7 +351,7 @@ final class Valid
      */
     public function alpha_dash(): self
     {
-        $this->validation_rule[] = 'alpha_dash';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -361,7 +361,7 @@ final class Valid
      */
     public function alpha_numeric_dash(): self
     {
-        $this->validation_rule[] = 'alpha_numeric_dash';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -371,7 +371,7 @@ final class Valid
      */
     public function alpha_numeric_space(): self
     {
-        $this->validation_rule[] = 'alpha_numeric_space';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -381,7 +381,7 @@ final class Valid
      */
     public function alpha_space(): self
     {
-        $this->validation_rule[] = 'alpha_space';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -391,7 +391,7 @@ final class Valid
      */
     public function numeric(): self
     {
-        $this->validation_rule[] = 'numeric';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -401,7 +401,7 @@ final class Valid
      */
     public function integer(): self
     {
-        $this->validation_rule[] = 'integer';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -411,7 +411,7 @@ final class Valid
      */
     public function float(): self
     {
-        $this->validation_rule[] = 'float';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -421,7 +421,7 @@ final class Valid
      */
     public function valid_url(): self
     {
-        $this->validation_rule[] = 'valid_url';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -431,7 +431,7 @@ final class Valid
      */
     public function url_exists(): self
     {
-        $this->validation_rule[] = 'url_exists';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -441,7 +441,7 @@ final class Valid
      */
     public function valid_ip(): self
     {
-        $this->validation_rule[] = 'valid_ip';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -451,7 +451,7 @@ final class Valid
      */
     public function valid_ipv4(): self
     {
-        $this->validation_rule[] = 'valid_ipv4';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -461,7 +461,7 @@ final class Valid
      */
     public function valid_ipv6(): self
     {
-        $this->validation_rule[] = 'valid_ipv6';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -471,7 +471,7 @@ final class Valid
      */
     public function valid_cc(): self
     {
-        $this->validation_rule[] = 'valid_cc';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -481,7 +481,7 @@ final class Valid
      */
     public function valid_name(): self
     {
-        $this->validation_rule[] = 'valid_name';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -491,7 +491,7 @@ final class Valid
      */
     public function street_address(): self
     {
-        $this->validation_rule[] = 'street_address';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -501,7 +501,7 @@ final class Valid
      */
     public function iban(): self
     {
-        $this->validation_rule[] = 'iban';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -513,7 +513,7 @@ final class Valid
      */
     public function date(string $valid_date): self
     {
-        $this->validation_rule[] = 'date' . $this->parameters_delimiter . $valid_date;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $valid_date;
 
         return $this;
     }
@@ -526,7 +526,7 @@ final class Valid
      */
     public function min_age(int $age): self
     {
-        $this->validation_rule[] = 'min_age' . $this->parameters_delimiter . $age;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $age;
 
         return $this;
     }
@@ -538,7 +538,7 @@ final class Valid
      */
     public function max_numeric(int $num): self
     {
-        $this->validation_rule[] = 'max_numeric' . $this->parameters_delimiter . $num;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $num;
 
         return $this;
     }
@@ -550,7 +550,7 @@ final class Valid
      */
     public function min_numeric(int $num): self
     {
-        $this->validation_rule[] = 'min_numeric' . $this->parameters_delimiter . $num;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $num;
 
         return $this;
     }
@@ -562,7 +562,7 @@ final class Valid
      */
     public function starts(string $start_with): self
     {
-        $this->validation_rule[] = 'starts' . $this->parameters_delimiter . $start_with;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $start_with;
 
         return $this;
     }
@@ -572,7 +572,7 @@ final class Valid
      */
     public function required_file(): self
     {
-        $this->validation_rule[] = 'required_file';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -588,7 +588,7 @@ final class Valid
         $str_contain = implode($this->parameters_arrays_delimiter, $extension);
 
         $delimeter               = $this->parameters_delimiter;
-        $this->validation_rule[] = (string) "extension$delimeter$str_contain";
+        $this->validation_rule[] = __FUNCTION__ . "$delimeter$str_contain";
 
         return $this;
     }
@@ -600,7 +600,7 @@ final class Valid
      */
     public function equalsfield(string $field_name): self
     {
-        $this->validation_rule[] = 'equalsfield' . $this->parameters_delimiter . $field_name;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $field_name;
 
         return $this;
     }
@@ -610,7 +610,7 @@ final class Valid
      */
     public function guidv4(): self
     {
-        $this->validation_rule[] = 'guidv4';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -620,7 +620,7 @@ final class Valid
      */
     public function phone_number(): self
     {
-        $this->validation_rule[] = 'phone_number';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -632,7 +632,7 @@ final class Valid
      */
     public function regex(string $regex): self
     {
-        $this->validation_rule[] = 'regex' . $this->parameters_delimiter . $regex;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $regex;
 
         return $this;
     }
@@ -642,7 +642,7 @@ final class Valid
      */
     public function valid_json_string(): self
     {
-        $this->validation_rule[] = 'valid_json_string';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -654,7 +654,7 @@ final class Valid
      */
     public function valid_array_size_greater(int $array_size): self
     {
-        $this->validation_rule[] = 'valid_array_size_greater' . $this->parameters_delimiter . $array_size;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $array_size;
 
         return $this;
     }
@@ -666,7 +666,7 @@ final class Valid
      */
     public function valid_array_size_lesser(int $array_size): self
     {
-        $this->validation_rule[] = 'valid_array_size_lesser' . $this->parameters_delimiter . $array_size;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $array_size;
 
         return $this;
     }
@@ -678,7 +678,7 @@ final class Valid
      */
     public function valid_array_size_equal(int $array_size): self
     {
-        $this->validation_rule[] = 'valid_array_size_equal' . $this->parameters_delimiter . $array_size;
+        $this->validation_rule[] = __FUNCTION__ . $this->parameters_delimiter . $array_size;
 
         return $this;
     }
@@ -688,7 +688,7 @@ final class Valid
      */
     public function valid_twitter(): self
     {
-        $this->validation_rule[] = 'valid_twitter';
+        $this->validation_rule[] = __FUNCTION__;
 
         return $this;
     }
