@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Validator\Rule;
 
+use Closure;
+use Exception;
 use Validator\Rule;
 
 /**
@@ -37,7 +39,31 @@ final class Filter
      */
     public function get_filter(): string
     {
-        return implode($this->delimiter, $this->filter_rule);
+        $is_block_if     = false;
+        $filters_rule    = [];
+
+        foreach ($this->filter_rule as $rule) {
+            // detect if condition
+            if ($rule === 'if_false') {
+                $is_block_if = true;
+                continue;
+            }
+            if ($rule === 'if_true' || $rule === 'end_if') {
+                // break if statment
+                $is_block_if = false;
+                continue;
+            }
+            // block rule if statment is false
+            if ($is_block_if === true) {
+                continue;
+            }
+
+            // add string rule and reset invert rule
+            $filters_rule[]    = $rule;
+            $is_invert         = false;
+        }
+
+        return implode($this->delimiter, $filters_rule);
     }
 
     /**
@@ -46,6 +72,68 @@ final class Filter
     public function __toString(): string
     {
         return $this->get_filter();
+    }
+
+    /**
+     * Rule will be applay if condition is true,
+     * otherwise rule be reset (not set) if return false.
+     *
+     * Reset only boolean false.
+     *
+     * @param Closure $condition Closure return boolean
+     */
+    public function where(Closure $condition): string
+    {
+        // get return closure
+        $result = call_user_func_array($condition, []);
+        // throw exception if closure not return boolean
+        if (!is_bool($result)) {
+            throw new Exception('Condition closure not return boolean', 1);
+        }
+
+        // false condition
+        if ($result === false) {
+            $this->filter_rule = [];
+        }
+
+        // prevent create new rule and give a string rule
+        return $this->get_filter();
+    }
+
+    /**
+     * Rule will be applay if condition is true,
+     * otherwise rule be skip if return false.
+     *
+     * Reset only boolean false.
+     *
+     * @param Closure $condition Closure return boolean
+     */
+    public function if(Closure $condition): self
+    {
+        // get return closure
+        $result = call_user_func_array($condition, []);
+        // throw exception if closure not return boolean
+        if (!is_bool($result)) {
+            throw new Exception('Condition closure not return boolean', 1);
+        }
+
+        // add condition to rule
+        $this->filter_rule[] = $result
+            ? 'if_true'
+            : 'if_false'
+        ;
+
+        return $this;
+    }
+
+    /**
+     * Set end rule of 'if' statment.
+     */
+    public function end_if(): self
+    {
+        $this->filter_rule[] = 'end_if';
+
+        return $this;
     }
 
     // -------------------------------------------------------
