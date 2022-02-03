@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add filter (rule) condition `where()`, only execute rule filter if condition as true (left side filter).
+- Add filter (rule) condition `if()`, only execute rule filter if condition as true (right side filter).
+- Add new filter `filter_`, does't perform anything. This filter also prevent from error when filter rule is empty.
+
 ### Changed
 - Change function name from Valid::equals_field() to `Valid::equalsfield()`
 
