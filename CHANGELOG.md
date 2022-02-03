@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Change function name from Valid::equals_field() to `Valid::equalsfield()`
 
 ## [0.4.0] - 2022-01-15
 ### Added

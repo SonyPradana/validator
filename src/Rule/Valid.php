@@ -106,6 +106,24 @@ final class Valid
     }
 
     /**
+     * Call function may have alias.
+     *
+     * @param string             $name      Methods name
+     * @param array<int, string> $arguments Params method
+     *
+     * @return self
+     */
+    public function __call($name, $arguments)
+    {
+        // backwards compatible until ver 1.x.x
+        if ($name === 'equals_field') {
+            $this->equalsfield($arguments[0]);
+        }
+
+        return $this;
+    }
+
+    /**
      * Set validation to invert result.
      */
     public function not(): self
@@ -580,7 +598,7 @@ final class Valid
      *
      * @param string $field_name Field value equals with
      */
-    public function equals_field(string $field_name): self
+    public function equalsfield(string $field_name): self
     {
         $this->validation_rule[] = 'equalsfield' . $this->parameters_delimiter . $field_name;
 
