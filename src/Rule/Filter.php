@@ -19,7 +19,7 @@ final class Filter
 
     public function __construct()
     {
-        $this->delimiter                   = Rule::$rules_delimiter;
+        $this->delimiter = Rule::$rules_delimiter;
     }
 
     /**
@@ -55,7 +55,7 @@ final class Filter
      */
     public function noise_words(): self
     {
-        $this->filter_rule[] = 'noise_words';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -65,7 +65,7 @@ final class Filter
      */
     public function rmpunctuation(): self
     {
-        $this->filter_rule[] = 'rmpunctuation';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -75,7 +75,7 @@ final class Filter
      */
     public function urlencode(): self
     {
-        $this->filter_rule[] = 'urlencode';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -85,7 +85,7 @@ final class Filter
      */
     public function htmlencode(): self
     {
-        $this->filter_rule[] = 'htmlencode';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -95,7 +95,7 @@ final class Filter
      */
     public function sanitize_email(): self
     {
-        $this->filter_rule[] = 'sanitize_email';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -105,7 +105,7 @@ final class Filter
      */
     public function sanitize_numbers(): self
     {
-        $this->filter_rule[] = 'sanitize_numbers';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -115,7 +115,7 @@ final class Filter
      */
     public function sanitize_floats(): self
     {
-        $this->filter_rule[] = 'sanitize_floats';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -125,7 +125,7 @@ final class Filter
      */
     public function sanitize_string(): self
     {
-        $this->filter_rule[] = 'sanitize_string';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -136,7 +136,7 @@ final class Filter
      */
     public function boolean(): self
     {
-        $this->filter_rule[] = 'boolean';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -146,7 +146,7 @@ final class Filter
      */
     public function basic_tags(): self
     {
-        $this->filter_rule[] = 'basic_tags';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -156,7 +156,7 @@ final class Filter
      */
     public function whole_number(): self
     {
-        $this->filter_rule[] = 'whole_number';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -166,7 +166,7 @@ final class Filter
      */
     public function ms_word_characters(): self
     {
-        $this->filter_rule[] = 'ms_word_characters';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -176,7 +176,7 @@ final class Filter
      */
     public function lower_case(): self
     {
-        $this->filter_rule[] = 'lower_case';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -186,7 +186,7 @@ final class Filter
      */
     public function upper_case(): self
     {
-        $this->filter_rule[] = 'upper_case';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -196,7 +196,7 @@ final class Filter
      */
     public function slug(): self
     {
-        $this->filter_rule[] = 'slug';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
@@ -206,7 +206,7 @@ final class Filter
      */
     public function trim(): self
     {
-        $this->filter_rule[] = 'trim';
+        $this->filter_rule[] = __FUNCTION__;
 
         return $this;
     }
