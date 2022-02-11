@@ -39,6 +39,18 @@ final class Validator
     }
 
     /**
+     * Create validation and filter using static.
+     *
+     * @param string[] $fileds Field array to validate
+     *
+     * @return static
+     */
+    public static function make($fileds = [])
+    {
+        return new static($fileds);
+    }
+
+    /**
      * Add new valid rule.
      *
      * @param string $name Field name
@@ -307,6 +319,40 @@ final class Validator
     public function lang(string $lang): self
     {
         $this->Rule->lang($lang);
+
+        return $this;
+    }
+
+    /**
+     * Adding validation rule using ValidPool Callback.
+     * Pass param as ValidPool in callback to adding rule.
+     *
+     * @param Closure $pools Closure with param as ValidPool
+     */
+    public function valid_pool(Closure $pools): self
+    {
+        $param = new ValidPool();
+        $call  = call_user_func($pools, $param);
+        foreach ($param->get_pool() as $key => $rule) {
+            $this->validations[$key] = $rule;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Adding Filter rule using FilterPool Callback.
+     * Pass param as FilterPool in callback to adding rule.
+     *
+     * @param Closure $pools Closure with param as FilterPool
+     */
+    public function filter_pool(Closure $pools): self
+    {
+        $param = new FilterPool();
+        $call  = call_user_func($pools, $param);
+        foreach ($param->get_pool() as $key => $rule) {
+            $this->filters[$key] = $rule;
+        }
 
         return $this;
     }
