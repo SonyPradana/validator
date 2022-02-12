@@ -22,7 +22,7 @@ it('can add multy field using method __invoke', function () {
 
 it('can add validator rule using pools callback', function () {
     $v = Validator::make(['test' => 123])
-        ->valid_pool(fn (ValidPool $v) => [
+        ->validation(fn (ValidPool $v) => [
             $v('test')->required(),
             $v('d')->alpha(),
         ])->is_valid();

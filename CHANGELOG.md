@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add filter (rule) condition `where()`, only execute rule filter if condition as true (left side filter).
 - Add filter (rule) condition `if()`, only execute rule filter if condition as true (right side filter).
 - Add new filter `filter_`, does't perform anything. This filter also prevent from error when filter rule is empty.
-- Adding validation rule using callback `Validator->valid_pool()`.
-- Adding filter rule using callback `Validator->filter_pool()`.
 - Add static to create new instance `Validator::make()`
+- Adding validation rule using callback `Validator->validation($callback)`.
+- Adding filter rule using callback `Validator->filters($callback)`.
 
 ### Changed
 - Change function name from Valid::equals_field() to `Valid::equalsfield()`
