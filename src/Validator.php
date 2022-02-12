@@ -39,6 +39,18 @@ final class Validator
     }
 
     /**
+     * Create validation and filter using static.
+     *
+     * @param string[] $fileds Field array to validate
+     *
+     * @return static
+     */
+    public static function make($fileds = [])
+    {
+        return new static($fileds);
+    }
+
+    /**
      * Add new valid rule.
      *
      * @param string $name Field name
@@ -174,15 +186,7 @@ final class Validator
         }
 
         $rules = [];
-        $pool  = new ValidPool();
-
-        $return_closure = call_user_func_array($rule_validation, [$pool]);
-        $get_pool       = $return_closure instanceof ValidPool
-            ? $return_closure->get_pool()
-            : $pool->get_pool()
-        ;
-
-        foreach ($get_pool as $field => $rule) {
+        foreach ($this->valid_pools($rule_validation) as $field => $rule) {
             $rules[$field] = $rule->get_validation();
         }
 
@@ -268,15 +272,8 @@ final class Validator
 
         // overwrite input field
         $rules_filter          = $this->fields;
-        $filter_pool           = new FilterPool();
-        $return_filter_closure = call_user_func_array($rule_filter, [$filter_pool]);
-        $get_filter_pool       = $return_filter_closure instanceof FilterPool
-            ? $return_filter_closure->get_pool()
-            : $filter_pool->get_pool()
-        ;
-
         // replace input field with filter
-        foreach ($get_filter_pool as $field => $rule) {
+        foreach ($this->filter_pools($rule_filter) as $field => $rule) {
             $rules_filter[$field] = $rule->get_filter();
         }
 
@@ -309,5 +306,73 @@ final class Validator
         $this->Rule->lang($lang);
 
         return $this;
+    }
+
+    /**
+     * Adding validation rule using ValidPool Callback.
+     * Pass param as ValidPool in callback to adding rule.
+     *
+     * @param Closure $pools Closure with param as ValidPool
+     */
+    public function validation(Closure $pools): self
+    {
+        foreach ($this->valid_pools($pools) as $key => $rule) {
+            $this->validations[$key] = $rule;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Adding Filter rule using FilterPool Callback.
+     * Pass param as FilterPool in callback to adding rule.
+     *
+     * @param Closure $pools Closure with param as FilterPool
+     */
+    public function filters(Closure $pools): self
+    {
+        foreach ($this->filter_pools($pools) as $key => $rule) {
+            $this->filters[$key] = $rule;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Helper to get rules from Closure.
+     *
+     * @param Closure $rule_validation ValidPool return or param
+     *
+     * @return Valid[] Validation rules
+     */
+    private function valid_pools(Closure $rule_validation): array
+    {
+        $pool  = new ValidPool();
+
+        $return_closure = call_user_func_array($rule_validation, [$pool]);
+
+        return $return_closure instanceof ValidPool
+            ? $return_closure->get_pool()
+            : $pool->get_pool()
+        ;
+    }
+
+    /**
+     * Helper to get rules from Closure.
+     *
+     * @param Closure $rule_filter FilterPool return or param
+     *
+     * @return Filter[] Filter rules
+     */
+    private function filter_pools(Closure $rule_filter): array
+    {
+        $pool  = new FilterPool();
+
+        $return_closure = call_user_func_array($rule_filter, [$pool]);
+
+        return $return_closure instanceof FilterPool
+            ? $return_closure->get_pool()
+            : $pool->get_pool()
+        ;
     }
 }

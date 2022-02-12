@@ -1,5 +1,6 @@
 <?php
 
+use Validator\Rule\ValidPool;
 use Validator\Validator;
 
 // can add multi validate rule
@@ -17,4 +18,14 @@ it('can add multy field using method __invoke', function () {
     $valid('test', 'test2')->required();
 
     expect($valid->is_valid())->toBeTrue();
+});
+
+it('can add validator rule using pools callback', function () {
+    $v = Validator::make(['test' => 123])
+        ->validation(fn (ValidPool $v) => [
+            $v('test')->required(),
+            $v('d')->alpha(),
+        ])->is_valid();
+
+    expect($v)->toBeTrue();
 });
