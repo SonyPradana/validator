@@ -332,7 +332,7 @@ final class Validator
     public function valid_pool(Closure $pools): self
     {
         $param = new ValidPool();
-        $call  = call_user_func($pools, $param);
+        call_user_func($pools, $param);
         foreach ($param->get_pool() as $key => $rule) {
             $this->validations[$key] = $rule;
         }
@@ -349,7 +349,7 @@ final class Validator
     public function filter_pool(Closure $pools): self
     {
         $param = new FilterPool();
-        $call  = call_user_func($pools, $param);
+        call_user_func($pools, $param);
         foreach ($param->get_pool() as $key => $rule) {
             $this->filters[$key] = $rule;
         }
