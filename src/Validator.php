@@ -13,17 +13,20 @@ use Validator\Rule\ValidPool;
 
 /**
  * @internal
+ *
+ * @property Collection $errors
+ * @property Collection $filters
  */
 final class Validator
 {
     private Rule $Rule;
 
     /** @var string[] */
-    private $fields      = [];
+    private $fields = [];
     /** @var Valid[] */
-    private $validations = [];
+    private $valid_rules = [];
     /** @var Filter[] */
-    private $filters = [];
+    private $filter_rules = [];
     /** @var bool Check rule validate has run or not */
     private $has_run_validate = false;
 
@@ -55,10 +58,19 @@ final class Validator
      *
      * @param string $name Field name
      *
-     * @return Valid New rule Validation
+     * @return Valid|Collection New rule Validation
      */
-    public function __get($name): Valid
+    public function __get($name)
     {
+        if ($name === 'errors') {
+            return $this->errors();
+        }
+
+        if ($name === 'filters') {
+            // @phpstan-ignore-next-line
+            return new Collection($this->filter_out());
+        }
+
         return $this->field($name);
     }
 
@@ -97,7 +109,7 @@ final class Validator
     private function set_field_rule(Valid $valid, array $fields): Valid
     {
         foreach ($fields as $field) {
-            $this->validations[$field] = $valid;
+            $this->valid_rules[$field] = $valid;
         }
 
         return $valid;
@@ -126,7 +138,7 @@ final class Validator
     private function set_filter_rule(Filter $valid, array $filters): Filter
     {
         foreach ($filters as $filter) {
-            $this->filters[$filter] = $valid;
+            $this->filter_rules[$filter] = $valid;
         }
 
         return $valid;
@@ -157,18 +169,30 @@ final class Validator
     /**
      * Process the validation errors and return an array of errors with field names as keys.
      *
-     * @return array<int, string> Validation errors
+     * @return array<string, string> Validation errors
      *
      * @throws Exception
      */
     public function get_error(): array
     {
         if (!$this->has_run_validate) {
-            $this->Rule->validate($this->fields, $this->validations);
+            $this->Rule->validate($this->fields, $this->valid_rules);
             $this->has_run_validate = true;
         }
 
         return $this->Rule->get_errors_array();
+    }
+
+    /**
+     * Process the validation errors and return an array of errors with field names as keys.
+     *
+     * @return Collection Validation errors
+     *
+     * @throws Exception
+     */
+    public function errors(): Collection
+    {
+        return new Collection($this->get_error());
     }
 
     /**
@@ -182,7 +206,7 @@ final class Validator
         if ($rule_validation == null) {
             $this->has_run_validate = true;
 
-            return $this->Rule->validate($this->fields, $this->validations) !== true ? false : true;
+            return $this->Rule->validate($this->fields, $this->valid_rules) !== true ? false : true;
         }
 
         $rules = [];
@@ -220,7 +244,7 @@ final class Validator
      */
     public function if_valid(Closure $condition): ValidationCondition
     {
-        $val = $this->Rule->validate($this->fields, $this->validations);
+        $val = $this->Rule->validate($this->fields, $this->valid_rules);
 
         if ($val === true) {
             call_user_func($condition);
@@ -242,7 +266,7 @@ final class Validator
      */
     public function validOrException(Exception $exception = null)
     {
-        if ($this->Rule->validate($this->fields, $this->validations) === true) {
+        if ($this->Rule->validate($this->fields, $this->valid_rules) === true) {
             return true;
         }
 
@@ -256,18 +280,18 @@ final class Validator
      */
     public function validOrError(Exception $exception = null)
     {
-        return $this->Rule->validate($this->fields, $this->validations);
+        return $this->Rule->validate($this->fields, $this->valid_rules);
     }
 
     /**
      * Filter the input data.
      *
-     * @return mixed, string> Fields input after filter
+     * @return mixed|array<string, string> Fields input after filter
      */
     public function filter_out(?Closure $rule_filter = null)
     {
         if ($rule_filter == null) {
-            return $this->Rule->filter($this->fields, $this->filters);
+            return $this->Rule->filter($this->fields, $this->filter_rules);
         }
 
         // overwrite input field
@@ -288,7 +312,7 @@ final class Validator
      */
     public function failedOrFilter()
     {
-        if ($this->Rule->validate($this->fields, $this->validations) === true) {
+        if ($this->Rule->validate($this->fields, $this->valid_rules) === true) {
             return $this->filter_out();
         }
 
@@ -316,8 +340,8 @@ final class Validator
      */
     public function validation(Closure $pools): self
     {
-        foreach ($this->valid_pools($pools) as $key => $rule) {
-            $this->validations[$key] = $rule;
+        foreach ($this->valid_pools($pools) as $field => $rule) {
+            $this->valid_rules[$field] = $rule;
         }
 
         return $this;
@@ -331,8 +355,8 @@ final class Validator
      */
     public function filters(Closure $pools): self
     {
-        foreach ($this->filter_pools($pools) as $key => $rule) {
-            $this->filters[$key] = $rule;
+        foreach ($this->filter_pools($pools) as $field => $rule) {
+            $this->filter_rules[$field] = $rule;
         }
 
         return $this;

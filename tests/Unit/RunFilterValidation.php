@@ -120,3 +120,14 @@ it('can run filter using method failedOrFilter but not valid', function () {
 
     expect($valid->failedOrFilter())->toBeTrue();
 });
+
+it('can get filter_out using filters propterty', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->filter('test')->upper_case();
+
+    expect($valid->filters)
+        ->has('test')->toBeTrue()
+        ->get('test')->toEqual('TEST')
+    ;
+});
