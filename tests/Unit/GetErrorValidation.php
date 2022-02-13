@@ -30,3 +30,28 @@ it('can get error message when valadation is fallen using method validOrError', 
 
     expect($valid->validOrError())->toHaveCount(1);
 });
+
+it('can get error from method errors', function () {
+    $v = new Validator(['test' => null, 'test2' => 'abc']);
+
+    $v('test')->required();
+    $v->filter('test2')->upper_case();
+
+    expect($v->errors()->all())->toMatchArray([
+        'test' => 'Test can\'t be null',
+    ]);
+    expect($v->errors->has('test'))->toBeTrue();
+});
+
+it('can get error from property errors', function () {
+    $v = new Validator(['test' => null, 'test2' => 'abc']);
+
+    $v('test')->required();
+    $v->filter('test2')->upper_case();
+
+    expect($v->errors)
+        ->has('test')->toBeTrue()
+        ->all()->toMatchArray([
+            'test' => 'Test can\'t be null',
+        ]);
+});
