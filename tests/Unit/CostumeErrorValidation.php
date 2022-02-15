@@ -1,6 +1,7 @@
 <?php
 
 use Validator\Rule;
+use Validator\Rule\ValidPool;
 use Validator\Validator;
 
 it('can change supported language', function () {
@@ -60,4 +61,29 @@ it('can create costume error multy', function () {
         'test'  => 'Test can\'t be null',
         'test2' => 'Test2 less that 2',
     ]);
+});
+
+it('can costume field error message', function () {
+    $v = Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+    ]);
+    $v->messages()->test->required = 'costume required message';
+
+    expect($v->errors->test)->toEqual(
+        'costume required message'
+    );
+});
+
+it('can costume field error message (overide global costume error)', function () {
+    Rule::set_error_message('required', '{field} can\'t be null');
+
+    $v = Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+    ]);
+
+    $v->messages()->test->required = 'costume required message';
+
+    expect($v->errors->test)->toEqual(
+        'costume required message'
+    );
 });

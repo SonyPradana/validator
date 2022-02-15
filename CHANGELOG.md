@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Adding filter rule using callback `Validator->filters($callback)`.
 - Adding new class (`Validator\Collection::class`) to convert array to smart object.
 - Adding property to get errors  `Validator->erros` and filter out `Validation->filters`, it will return as `Validator\Collection::class`.
+- Adding method to costume field error message `Validator::Message()`.
 
 ### Changed
 - Change function name from Valid::equals_field() to `Valid::equalsfield()`

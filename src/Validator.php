@@ -6,6 +6,7 @@ namespace Validator;
 
 use Closure;
 use Exception;
+use Validator\Messages\MessagePool;
 use Validator\Rule\Filter;
 use Validator\Rule\FilterPool;
 use Validator\Rule\Valid;
@@ -179,6 +180,8 @@ final class Validator
             $this->Rule->validate($this->fields, $this->valid_rules);
             $this->has_run_validate = true;
         }
+
+        $this->set_messages();
 
         return $this->Rule->get_errors_array();
     }
@@ -398,5 +401,31 @@ final class Validator
             ? $return_closure->get_pool()
             : $pool->get_pool()
         ;
+    }
+
+    /** @var MessagePool[] */
+    private $messages = [];
+
+    /**
+     * Set field-rule specific error messages.
+     */
+    public function messages(): MessagePool
+    {
+        return $this->messages[] = new MessagePool();
+    }
+
+    /**
+     * Convert Messages class to array messages.
+     */
+    private function set_messages(): void
+    {
+        $messages = [];
+        foreach ($this->messages as $messege_pool) {
+            foreach ($messege_pool->Messages() as $filed => $message) {
+                $messages[$filed] = $message;
+            }
+        }
+
+        $this->Rule->set_fields_error_messages($messages);
     }
 }
