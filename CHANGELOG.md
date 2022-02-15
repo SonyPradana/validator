@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.5.0] - 2022-02-15
 ### Added
 - Add filter (rule) condition `where()`, only execute rule filter if condition as true (left side filter).
 - Add filter (rule) condition `if()`, only execute rule filter if condition as true (right side filter).
