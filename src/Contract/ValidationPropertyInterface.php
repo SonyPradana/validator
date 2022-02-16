@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Validator\Messages;
+namespace Validator\Contract;
 
 /**
+ * Doest containt anythink,
+ * just load property doc.
+ *
  * @property string $required
  * @property string $valid_email
  * @property string $max_len
@@ -51,8 +54,6 @@ namespace Validator\Messages;
  * @property string $valid_array_size_equal
  * @property string $valid_twitter
  */
-abstract class AbstractMessage
+interface ValidationPropertyInterface
 {
-    // doest containt anythink
-    // just load property doc
 }

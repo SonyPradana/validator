@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Validator\Messages;
 
 use ArrayAccess;
+use Validator\Contract\ValidationPropertyInterface;
 
 /**
  * @implements ArrayAccess<string,string>
  */
-final class Message extends AbstractMessage implements ArrayAccess
+final class Message implements ArrayAccess, ValidationPropertyInterface
 {
     /** @var array<string, string> */
     private $messages = [];
