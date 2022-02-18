@@ -87,3 +87,16 @@ it('can costume field error message (overide global costume error)', function ()
         'costume required message'
     );
 });
+
+it('can costume field error message (use messsage array)', function () {
+    $v = Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+    ]);
+    $v->messages()->test = [
+        'required' => 'costume required message',
+    ];
+
+    expect($v->errors->test)->toEqual(
+        'costume required message'
+    );
+});

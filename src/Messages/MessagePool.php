@@ -24,6 +24,19 @@ final class MessagePool
     /**
      * Field tobe set.
      *
+     * @param string $field   Field name
+     * @param string $message Message for this field
+     *
+     * @return void
+     */
+    public function __set($field, $message)
+    {
+        $this->messages[$field] = $message;
+    }
+
+    /**
+     * Field tobe set.
+     *
      * @param string $name field name
      *
      * @return Message
