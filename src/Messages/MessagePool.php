@@ -24,8 +24,8 @@ final class MessagePool
     /**
      * Field tobe set.
      *
-     * @param string $field   Field name
-     * @param string $message Message for this field
+     * @param string  $field   Field name
+     * @param Message $message Message for this field
      *
      * @return void
      */

@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.5.1] - 2022-02-18
+### Added
+- Add method to add error message using `__set`.
+
+### Fixed
+- Fix deprecated warning php 8.0.
+
 ## [0.5.0] - 2022-02-15
 ### Added
 - Add filter (rule) condition `where()`, only execute rule filter if condition as true (left side filter).
