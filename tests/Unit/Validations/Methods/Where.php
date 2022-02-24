@@ -43,3 +43,12 @@ it('can reset validation rule using method where (no boolean)', function () {
     // output: throw error
     $val->test->required()->where(fn () => 'test');
 })->throws('Condition closure not return boolean');
+
+it('can validate combine with submitted method', function () {
+    $val = new Validator();
+
+    // output: required
+    $val->field('test')->required()->where(fn () => $val->submitted());
+
+    expect($val->is_valid())->toBeFalse();
+});

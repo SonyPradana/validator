@@ -428,4 +428,37 @@ final class Validator
 
         $this->Rule->set_fields_error_messages($messages);
     }
+
+    /**
+     * Check validation has submitted form.
+     *
+     * @return bool True if from submitted form
+     */
+    public function submitted(): bool
+    {
+        return isset($_SERVER['REQUEST_METHOD'])
+            ? $_SERVER['REQUEST_METHOD'] === 'POST'
+            : false;
+    }
+
+    /**
+     * Validation field and submitted check.
+     *
+     * @return bool True if pass is_valid and submitted
+     */
+    public function passed(): bool
+    {
+        return $this->is_valid() && $this->submitted();
+    }
+
+    /**
+     * Validation field and submitted check.
+     * Invert method passed().
+     *
+     * @return bool True if not pass is_valid and submitted
+     */
+    public function fails(): bool
+    {
+        return !$this->passed();
+    }
 }

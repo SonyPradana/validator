@@ -91,3 +91,12 @@ it('can execute method using if-contiune (false, true)', function () {
 
     expect($val->is_valid())->toBeTrue();
 });
+
+it('can validate combine with submitted method', function () {
+    $val = new Validator();
+
+    // output: required
+    $val->field('test')->if(fn () => $val->submitted())->required();
+
+    expect($val->is_valid())->toBeFalse();
+});

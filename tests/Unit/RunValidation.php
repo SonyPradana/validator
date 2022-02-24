@@ -12,6 +12,15 @@ it('can run validation using method is_valid', function () {
     expect($valid->is_valid())->toBeTrue();
 });
 
+it('can run validation using method passed', function () {
+    $_SERVER['REQUEST_METHOD'] = 'POST';
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->test->required();
+
+    expect($valid->is_valid())->toBeTrue();
+});
+
 it('can run validation using method is_valid with closure (param)', function () {
     $valid = new Validator([
         'test1' => 'test',
@@ -102,4 +111,13 @@ test('method is_error is invert as is_valid', function () {
 
     expect($valid->is_error())->toBeFalse();
     expect($valid->is_error())->not->toEqual($valid->is_valid());
+});
+
+test('method fails is invert as passed', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->test->required();
+
+    expect($valid->fails())->toBeFalse();
+    expect($valid->fails())->not->toEqual($valid->passed());
 });
