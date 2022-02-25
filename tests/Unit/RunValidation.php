@@ -21,6 +21,28 @@ it('can run validation using method passed', function () {
     expect($valid->is_valid())->toBeTrue();
 });
 
+it('validation false because method pass required valid validation', function () {
+    $_SERVER['REQUEST_METHOD'] = 'POST';
+
+    expect(Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+    ])->passed())->toBeFalse();
+});
+
+it('validation false because method pass required submitted form', function () {
+    $_SERVER['REQUEST_METHOD'] = 'GET';
+
+    expect(Validator::make()->passed())->toBeFalse();
+});
+
+it('validation false because method pass required submitted form and valid validation', function () {
+    $_SERVER['REQUEST_METHOD'] = 'GET';
+
+    expect(Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+    ])->passed())->toBeFalse();
+});
+
 it('can run validation using method is_valid with closure (param)', function () {
     $valid = new Validator([
         'test1' => 'test',
@@ -104,7 +126,7 @@ it('can run validation using method validOrError but not valid', function () {
     expect($valid->validOrError())->toBeArray();
 });
 
-test('method is_error is invert as is_valid', function () {
+test('method is_error() is invert as method is_valid()', function () {
     $valid = new Validator(['test' => 'test']);
 
     $valid->test->required();
@@ -113,7 +135,9 @@ test('method is_error is invert as is_valid', function () {
     expect($valid->is_error())->not->toEqual($valid->is_valid());
 });
 
-test('method fails is invert as passed', function () {
+test('method fails() is invert as method passed()', function () {
+    $_SERVER['REQUEST_METHOD'] = 'POST';
+
     $valid = new Validator(['test' => 'test']);
 
     $valid->test->required();
