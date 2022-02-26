@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added method to check form submitted `validator->submitted()`.
 - Added method to check validaton and form submitted `validator->passed()`.
 - Added method to check validaton and form submitted `validator->fails()`.
+- Adding validation from method `Validator::make($field, $closure)` using param `$closure` as `validpool` closuser.
 
 ## [0.5.1] - 2022-02-18
 ### Added

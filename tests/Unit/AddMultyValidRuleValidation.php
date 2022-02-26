@@ -29,3 +29,12 @@ it('can add validator rule using pools callback', function () {
 
     expect($v)->toBeTrue();
 });
+
+it('can add validator rule using pools callback from method make()', function () {
+    $v = Validator::make(['test' => 123], fn (ValidPool $v) => [
+        $v('test')->required(),
+        $v('d')->alpha(),
+    ])->is_valid();
+
+    expect($v)->toBeTrue();
+});

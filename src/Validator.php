@@ -45,13 +45,19 @@ final class Validator
     /**
      * Create validation and filter using static.
      *
-     * @param string[] $fileds Field array to validate
+     * @param string[]     $fileds        Field array to validate
+     * @param Closure|null $validate_pool Closure with param as ValidPool
      *
      * @return static
      */
-    public static function make($fileds = [])
+    public static function make($fileds = [], Closure $validate_pool = null)
     {
-        return new static($fileds);
+        $validate = new static($fileds);
+        if ($validate_pool !== null) {
+            $validate->validation($validate_pool);
+        }
+
+        return $validate;
     }
 
     /**
