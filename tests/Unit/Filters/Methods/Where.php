@@ -43,3 +43,13 @@ it('can reset filter rule using method where (no boolean)', function () {
 
     $val->filter('test')->trim()->where(fn () => 'test');
 })->throws('Condition closure not return boolean');
+
+it('can execute rule combine with submitted method', function () {
+    $val = new Validator(['test' => ' trim ']);
+
+    $val->filter('test')->trim()->where(fn () => $val->submitted());
+
+    expect($val->filter_out())->toMatchArray([
+        'test' => ' trim ',
+    ]);
+});

@@ -101,3 +101,13 @@ it('can execute method using if-contiune (false, true)', function () {
         'test' => 'trim',
     ]);
 });
+
+it('can execute rule combine with submitted method', function () {
+    $val = new Validator(['test' => ' trim ']);
+
+    $val->filter('test')->if(fn () => $val->submitted())->trim();
+
+    expect($val->filter_out())->toMatchArray([
+        'test' => ' trim ',
+    ]);
+});
