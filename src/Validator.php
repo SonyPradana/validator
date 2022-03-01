@@ -475,16 +475,9 @@ final class Validator
      */
     public function only(array $fields): self
     {
-        $falid_fields = [];
-        foreach ($fields as $val) {
-            if (array_key_exists($val, $this->fields)) {
-                $falid_fields[] = $val;
-            }
-        }
-
         $this->valid_rules = array_filter(
             $this->valid_rules,
-            fn ($field) => in_array($field, $falid_fields),
+            fn ($field) => in_array($field, $fields),
             ARRAY_FILTER_USE_KEY
         );
 
