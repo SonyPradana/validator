@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added method to check validaton and form submitted `validator->passed()`.
 - Added method to check validaton and form submitted `validator->fails()`.
 - Adding validation from method `Validator::make($field, $closure)` using param `$closure` as `validpool` closuser.
+- Added method to filter field rule base on field which need to use. `validator->only()` use specified field, `validator->except()` inverse of only.
 
 ## [0.5.1] - 2022-02-18
 ### Added

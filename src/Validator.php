@@ -467,4 +467,43 @@ final class Validator
     {
         return !$this->passed();
     }
+
+    /**
+     * Filter validation only allow field.
+     *
+     * @param array<int, string> $fields Fields allow to validation
+     */
+    public function only(array $fields): self
+    {
+        $falid_fields = [];
+        foreach ($fields as $val) {
+            if (array_key_exists($val, $this->fields)) {
+                $falid_fields[] = $val;
+            }
+        }
+
+        $this->valid_rules = array_filter(
+            $this->valid_rules,
+            fn ($field) => in_array($field, $falid_fields),
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this;
+    }
+
+    /**
+     * Filter validation except some field.
+     *
+     * @param array<int, string> $fields Fields not allow to validation
+     */
+    public function except(array $fields): self
+    {
+        $this->valid_rules = array_filter(
+            $this->valid_rules,
+            fn ($field) => !in_array($field, $fields),
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this;
+    }
 }
