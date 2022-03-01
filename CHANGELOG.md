@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.6.0] - 2022-03-01
 - Added method to check form submitted `validator->submitted()`.
 - Added method to check validaton and form submitted `validator->passed()`.
 - Added method to check validaton and form submitted `validator->fails()`.
