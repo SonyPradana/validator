@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Fixed
+- Fixed adding new exist rule not overwrite exist rule. Group field must set before single field.
+
+### Added
+- Added method `Valid->combine($valid)` and `Filter->combine($filter)` to add combine with other rule.
+
+## [0.6.1] - 2022-03-01
+### Fixed
 - fixed not exist field method `only` always return true.
 
 ## [0.6.0] - 2022-03-01

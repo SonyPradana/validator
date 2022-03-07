@@ -69,7 +69,8 @@ final class ValidPool
     private function set_field_rule(Valid $valid, array $fields): Valid
     {
         foreach ($fields as $field) {
-            $this->pool[$field] = $valid;
+            $rule               = $this->pool[$field] ?? $valid;
+            $this->pool[$field] = $valid->combine($rule);
         }
 
         return $valid;

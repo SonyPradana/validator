@@ -116,7 +116,8 @@ final class Validator
     private function set_field_rule(Valid $valid, array $fields): Valid
     {
         foreach ($fields as $field) {
-            $this->valid_rules[$field] = $valid;
+            $rule                      = $this->valid_rules[$field] ?? $valid;
+            $this->valid_rules[$field] = $valid->combine($rule);
         }
 
         return $valid;
@@ -137,18 +138,19 @@ final class Validator
     /**
      * Helper to add multy filter rule in single method.
      *
-     * @param Filter                    $valid   Instans for new filter rule
-     * @param array<int|string, string> $filters Fields name
+     * @param Filter                    $filter Instans for new filter rule
+     * @param array<int|string, string> $fields Fields name
      *
      * @return Filter Rule filter base from param
      */
-    private function set_filter_rule(Filter $valid, array $filters): Filter
+    private function set_filter_rule(Filter $filter, array $fields): Filter
     {
-        foreach ($filters as $filter) {
-            $this->filter_rules[$filter] = $valid;
+        foreach ($fields as $field) {
+            $rule                       = $this->filter_rules[$field] ?? $filter;
+            $this->filter_rules[$field] = $filter->combine($rule);
         }
 
-        return $valid;
+        return $filter;
     }
 
     /**

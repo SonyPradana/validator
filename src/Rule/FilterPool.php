@@ -61,17 +61,18 @@ final class FilterPool
     /**
      * Helper to add multy filter rule in single method.
      *
-     * @param Filter                    $valid   Instans for new filter rule
-     * @param array<int|string, string> $filters Fields name
+     * @param Filter                    $filter Instans for new filter rule
+     * @param array<int|string, string> $fields Fields name
      *
      * @return Filter Rule filter base from param
      */
-    private function set_filter_rule(Filter $valid, array $filters): Filter
+    private function set_filter_rule(Filter $filter, array $fields): Filter
     {
-        foreach ($filters as $filter) {
-            $this->pool[$filter] = $valid;
+        foreach ($fields as $field) {
+            $rule               = $this->pool[$field] ?? $filter;
+            $this->pool[$field] = $filter->combine($rule);
         }
 
-        return $valid;
+        return $filter;
     }
 }

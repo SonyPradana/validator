@@ -82,6 +82,20 @@ final class Valid
     }
 
     /**
+     * Combine validation rule with other validation rule.
+     *
+     * @param Valid $valid Valiidation class to combine
+     */
+    public function combine(Valid $valid): self
+    {
+        foreach ($valid->validation_rule as $rule) {
+            $this->validation_rule[] = $rule;
+        }
+
+        return $this;
+    }
+
+    /**
      * @return string Rule of validation
      */
     public function __toString(): string

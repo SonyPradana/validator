@@ -67,6 +67,20 @@ final class Filter
     }
 
     /**
+     * Combine filter rule with other filter rule.
+     *
+     * @param Filter $filter Filter class to combine
+     */
+    public function combine(Filter $filter): self
+    {
+        foreach ($filter->filter_rule as $rule) {
+            $this->filter_rule[] = $rule;
+        }
+
+        return $this;
+    }
+
+    /**
      * @return string Rule of filter
      */
     public function __toString(): string
