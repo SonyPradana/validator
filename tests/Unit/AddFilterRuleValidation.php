@@ -82,3 +82,16 @@ it('can add multy filter using method filter', function () {
         ['test' => 'test', 'test2' => 'test']
     );
 });
+
+it('can add multy filter using method filter with filter exist', function () {
+    $valid = new Validator(['test' => ' test ', 'test2' => ' test ']);
+
+    $valid->field('test', 'test2')->required();
+    $valid->filter('test', 'test2')->trim();
+    $valid->filter('test')->upper_case();
+    $valid->filter('test2')->upper_case();
+
+    expect($valid->filter_out())->toMatchArray(
+        ['test' => 'TEST', 'test2' => 'TEST']
+    );
+});

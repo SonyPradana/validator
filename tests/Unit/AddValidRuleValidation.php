@@ -73,25 +73,22 @@ it('can add validator rule using pools callback from method make() (return)', fu
 });
 
 it('can add new valid rule with exist field', function () {
-    $validation = new Validator();
+    $validation = new Validator(['test' => 'test']);
 
-    $validation->field('test', 'test2')->required();
-    $validation->field('test')->max_len(1);
-    $validation->field('test2')->max_len(1);
+    $validation->field('test')->max_len(4);
+    $validation->field('test')->required();
 
-    // must error, field 'test' is required
-    expect($validation->is_error())->toBeTrue();
+    expect($validation->is_valid())->toBeTrue();
 });
 
 it('can add new valid rule with exist field using validpool', function () {
-    $validation = new Validator();
+    $validation = new Validator(['test' => 'test']);
     $validation->validation(fn ($valid) => [
+        $valid('test')->max_len(4),
         $valid('test')->required(),
-        $valid('test')->max_len(1),
     ]);
 
-    // must error, field 'test' is required
-    expect($validation->is_error())->toBeTrue();
+    expect($validation->is_valid())->toBeTrue();
 });
 
 // Multy --------------------------------------------------
@@ -104,10 +101,30 @@ it('can add multy field using method field', function () {
     expect($valid->is_valid())->toBeTrue();
 });
 
+it('can add multy field using method field with field exist', function () {
+    $valid = new Validator(['test' => 'test', 'test2' => 'test2']);
+
+    $valid->field('test', 'test2')->required();
+    $valid->field('test')->max_len(4);
+    $valid->field('test2')->max_len(5);
+
+    expect($valid->is_valid())->toBeTrue();
+});
+
 it('can add multy field using method __invoke', function () {
     $valid = new Validator(['test' => 'test', 'test2' => 'test']);
 
     $valid('test', 'test2')->required();
+
+    expect($valid->is_valid())->toBeTrue();
+});
+
+it('can add multy field using method __invoke with field exist', function () {
+    $valid = new Validator(['test' => 'test', 'test2' => 'test']);
+
+    $valid('test', 'test2')->required();
+    $valid->field('test')->max_len(4);
+    $valid->field('test2')->max_len(4);
 
     expect($valid->is_valid())->toBeTrue();
 });

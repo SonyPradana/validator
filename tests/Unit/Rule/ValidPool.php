@@ -11,12 +11,32 @@ it('can add valid using __get', function () {
     ]);
 });
 
+it('can add valid using __get with exist rule', function () {
+    $pool = new ValidPool();
+    $pool->test->required();
+    $pool->test->alpha();
+
+    expect($pool->get_pool())->toMatchArray([
+        'test' => 'required|alpha',
+    ]);
+});
+
 it('can add valid using __invoke', function () {
     $pool = new ValidPool();
     $pool('test')->required();
 
     expect($pool->get_pool())->toMatchArray([
         'test' => 'required',
+    ]);
+});
+
+it('can add valid using __invoke with exist rule', function () {
+    $pool = new ValidPool();
+    $pool('test')->required();
+    $pool('test')->alpha();
+
+    expect($pool->get_pool())->toMatchArray([
+        'test' => 'required|alpha',
     ]);
 });
 
@@ -36,6 +56,16 @@ it('can add valid using rule', function () {
 
     expect($pool->get_pool())->toMatchArray([
         'test' => 'required',
+    ]);
+});
+
+it('can add valid using rule with exist rule', function () {
+    $pool = new ValidPool();
+    $pool->rule('test')->required();
+    $pool->rule('test')->alpha();
+
+    expect($pool->get_pool())->toMatchArray([
+        'test' => 'required|alpha',
     ]);
 });
 
