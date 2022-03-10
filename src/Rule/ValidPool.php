@@ -9,7 +9,7 @@ namespace Validator\Rule;
  */
 final class ValidPool
 {
-    /** @var Valid[] */
+    /** @var array<int, array<string, string|Valid>> */
     private $pool = [];
 
     /**
@@ -19,7 +19,66 @@ final class ValidPool
      */
     public function get_pool()
     {
-        return $this->pool;
+        $rules = [];
+        foreach ($this->pool as $ruler) {
+            $field = $ruler['field'];
+            $rule  = $ruler['rule'];
+            if ($rule instanceof Valid) {
+                // @phpstan-ignore-next-line
+                $exist_rule    = $rules[$field] ?? new Valid();
+                // @phpstan-ignore-next-line
+                $rules[$field] = $exist_rule->combine($rule);
+            }
+        }
+
+        return $rules;
+    }
+
+    /**
+     * Filter validation only allow field.
+     *
+     * @param array<int, string> $fields Fields allow to validation
+     * @return self
+     */
+    public function only(array $fields)
+    {
+        $this->pool = array_filter(
+            $this->pool,
+            fn ($field) => in_array($field['field'], $fields)
+        );
+
+        return $this;
+    }
+
+    /**
+     * Filter validation expect allow field.
+     *
+     * @param array<int, string> $fields Fields allow to validation
+     * @return self
+     */
+    public function except(array $fields): self
+    {
+        $this->pool = array_filter(
+            $this->pool,
+            fn ($field) => !in_array($field['field'], $fields)
+        );
+
+        return $this;
+    }
+
+    /**
+     * Combine validation rule with other validation rule.
+     *
+     * @param ValidPool $validPool ValidPool class to combine
+     * @return self
+     */
+    public function combine(ValidPool $validPool)
+    {
+        foreach ($validPool->pool as $valid_rule) {
+            $this->pool[] = $valid_rule;
+        }
+
+        return $this;
     }
 
     /**
@@ -69,8 +128,10 @@ final class ValidPool
     private function set_field_rule(Valid $valid, array $fields): Valid
     {
         foreach ($fields as $field) {
-            $rule               = $this->pool[$field] ?? $valid;
-            $this->pool[$field] = $valid->combine($rule);
+            $this->pool[] = [
+                'field' => $field,
+                'rule'  => $valid,
+            ];
         }
 
         return $valid;
