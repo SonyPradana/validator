@@ -104,6 +104,8 @@ final class Validator
      */
     public function field(string ...$field): Valid
     {
+        $this->has_run_validate = false;
+
         return $this->valid_pool->rule(...$field);
     }
 
@@ -208,6 +210,7 @@ final class Validator
         // load from param (convert to ValidPool)
         $rules = $this->valid_pools($rule_validation)->get_pool();
         $this->Rule->validation_rules($rules);
+
         return $this->Rule->run($this->fields) === false
             ? false
             : true

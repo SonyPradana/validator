@@ -38,6 +38,7 @@ final class ValidPool
      * Filter validation only allow field.
      *
      * @param array<int, string> $fields Fields allow to validation
+     *
      * @return self
      */
     public function only(array $fields)
@@ -54,7 +55,6 @@ final class ValidPool
      * Filter validation expect allow field.
      *
      * @param array<int, string> $fields Fields allow to validation
-     * @return self
      */
     public function except(array $fields): self
     {
@@ -70,6 +70,7 @@ final class ValidPool
      * Combine validation rule with other validation rule.
      *
      * @param ValidPool $validPool ValidPool class to combine
+     *
      * @return self
      */
     public function combine(ValidPool $validPool)
