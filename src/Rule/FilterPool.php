@@ -9,7 +9,7 @@ namespace Validator\Rule;
  */
 final class FilterPool
 {
-    /** @var Filter[] */
+    /** @var array<int, array<string, string|Filter>> */
     private $pool = [];
 
     /**
@@ -19,7 +19,67 @@ final class FilterPool
      */
     public function get_pool()
     {
-        return $this->pool;
+        $rules = [];
+        foreach ($this->pool as $ruler) {
+            $field = $ruler['field'];
+            $rule  = $ruler['rule'];
+            if ($rule instanceof Filter) {
+                // @phpstan-ignore-next-line
+                $exist_rule    = $rules[$field] ?? new Filter();
+                // @phpstan-ignore-next-line
+                $rules[$field] = $exist_rule->combine($rule);
+            }
+        }
+
+        return $rules;
+    }
+
+    /**
+     * Combine filter rule with other filter rule.
+     *
+     * @param FilterPool $filterPool FilterPool class to combine
+     *
+     * @return self
+     */
+    public function combine(FilterPool $filterPool)
+    {
+        foreach ($filterPool->pool as $valid_rule) {
+            $this->pool[] = $valid_rule;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Filter filter only allow field.
+     *
+     * @param array<int, string> $fields Fields allow to filter
+     *
+     * @return self
+     */
+    public function only(array $fields)
+    {
+        $this->pool = array_filter(
+            $this->pool,
+            fn ($field) => in_array($field['field'], $fields)
+        );
+
+        return $this;
+    }
+
+    /**
+     * Filter filter expect allow field.
+     *
+     * @param array<int, string> $fields Fields allow to filter
+     */
+    public function except(array $fields): self
+    {
+        $this->pool = array_filter(
+            $this->pool,
+            fn ($field) => !in_array($field['field'], $fields)
+        );
+
+        return $this;
     }
 
     /**
@@ -69,8 +129,10 @@ final class FilterPool
     private function set_filter_rule(Filter $filter, array $fields): Filter
     {
         foreach ($fields as $field) {
-            $rule               = $this->pool[$field] ?? $filter;
-            $this->pool[$field] = $filter->combine($rule);
+            $this->pool[] = [
+                'field' => $field,
+                'rule'  => $filter,
+            ];
         }
 
         return $filter;

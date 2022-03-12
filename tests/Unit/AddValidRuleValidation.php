@@ -107,6 +107,7 @@ it('can add multy field using method field with field exist', function () {
     $valid->field('test', 'test2')->required();
     $valid->field('test')->max_len(4);
     $valid->field('test2')->max_len(5);
+    $valid->field('test', 'test2')->min_len(4);
 
     expect($valid->is_valid())->toBeTrue();
 });
@@ -120,11 +121,12 @@ it('can add multy field using method __invoke', function () {
 });
 
 it('can add multy field using method __invoke with field exist', function () {
-    $valid = new Validator(['test' => 'test', 'test2' => 'test']);
+    $valid = new Validator(['test' => 'test', 'test2' => 'test2']);
 
     $valid('test', 'test2')->required();
     $valid->field('test')->max_len(4);
-    $valid->field('test2')->max_len(4);
+    $valid->field('test2')->max_len(5);
+    $valid('test', 'test2')->min_len(4);
 
     expect($valid->is_valid())->toBeTrue();
 });
