@@ -24,10 +24,10 @@ final class Validator
 
     /** @var string[] */
     private $fields = [];
-    /** @var Filter[] */
-    private $filter_rules = [];
     /** @var ValidPool Valid rule collection */
     private $valid_pool;
+    /** @var FilterPool Filter rule collection */
+    private $filter_pool;
 
     /** @var bool Check rule validate has run or not */
     private $has_run_validate = false;
@@ -39,9 +39,10 @@ final class Validator
      */
     public function __construct($fileds = [])
     {
-        $this->Rule       = new Rule();
-        $this->fields     = $fileds;
-        $this->valid_pool = new ValidPool();
+        $this->Rule        = new Rule();
+        $this->fields      = $fileds;
+        $this->valid_pool  = new ValidPool();
+        $this->filter_pool = new FilterPool();
     }
 
     /**
@@ -118,25 +119,7 @@ final class Validator
      */
     public function filter(string ...$field): Filter
     {
-        return $this->set_filter_rule(new Filter(), $field);
-    }
-
-    /**
-     * Helper to add multy filter rule in single method.
-     *
-     * @param Filter                    $filter Instans for new filter rule
-     * @param array<int|string, string> $fields Fields name
-     *
-     * @return Filter Rule filter base from param
-     */
-    private function set_filter_rule(Filter $filter, array $fields): Filter
-    {
-        foreach ($fields as $field) {
-            $rule                       = $this->filter_rules[$field] ?? $filter;
-            $this->filter_rules[$field] = $filter->combine($rule);
-        }
-
-        return $filter;
+        return $this->filter_pool->rule(...$field);
     }
 
     /**
@@ -208,7 +191,7 @@ final class Validator
         }
 
         // load from param (convert to ValidPool)
-        $rules = $this->valid_pools($rule_validation)->get_pool();
+        $rules = $this->closure_to_validation($rule_validation)->get_pool();
         $this->Rule->validation_rules($rules);
 
         return $this->Rule->run($this->fields) === false
@@ -285,14 +268,14 @@ final class Validator
      */
     public function filter_out(?Closure $rule_filter = null)
     {
-        if ($rule_filter == null) {
-            return $this->Rule->filter($this->fields, $this->filter_rules);
+        if ($rule_filter === null) {
+            return $this->Rule->filter($this->fields, $this->filter_pool->get_pool());
         }
 
         // overwrite input field
         $rules_filter          = $this->fields;
         // replace input field with filter
-        foreach ($this->filter_pools($rule_filter) as $field => $rule) {
+        foreach ($this->closure_to_filter($rule_filter)->get_pool() as $field => $rule) {
             $rules_filter[$field] = $rule->get_filter();
         }
 
@@ -336,7 +319,7 @@ final class Validator
     public function validation(Closure $pools): self
     {
         $this->valid_pool->combine(
-            $this->valid_pools($pools)
+            $this->closure_to_validation($pools)
         );
 
         return $this;
@@ -350,9 +333,9 @@ final class Validator
      */
     public function filters(Closure $pools): self
     {
-        foreach ($this->filter_pools($pools) as $field => $rule) {
-            $this->filter_rules[$field] = $rule;
-        }
+        $this->filter_pool->combine(
+            $this->closure_to_filter($pools)
+        );
 
         return $this;
     }
@@ -364,7 +347,7 @@ final class Validator
      *
      * @return ValidPool Validation rules
      */
-    private function valid_pools(Closure $rule_validation): ValidPool
+    private function closure_to_validation(Closure $rule_validation): ValidPool
     {
         $pool  = new ValidPool();
 
@@ -381,17 +364,17 @@ final class Validator
      *
      * @param Closure $rule_filter FilterPool return or param
      *
-     * @return Filter[] Filter rules
+     * @return FilterPool Filter rules
      */
-    private function filter_pools(Closure $rule_filter): array
+    private function closure_to_filter(Closure $rule_filter): FilterPool
     {
         $pool  = new FilterPool();
 
         $return_closure = call_user_func_array($rule_filter, [$pool]);
 
         return $return_closure instanceof FilterPool
-            ? $return_closure->get_pool()
-            : $pool->get_pool()
+            ? $return_closure
+            : $pool
         ;
     }
 
