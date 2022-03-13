@@ -5,8 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.6.2] - 2022-03-13
 ### Fixed
-- Fixed adding new exist rule not overwrite exist rule. Group field must set before single field.
+- Fixed adding new exist rule not overwrite exist rule.
 
 ### Added
 - Added method `Valid->combine($valid)` and `Filter->combine($filter)` to add combine with other rule.
