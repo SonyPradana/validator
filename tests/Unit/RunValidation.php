@@ -13,8 +13,8 @@ it('can run validation using method is_valid', function () {
 });
 
 it('can run validation using method passed', function () {
-    $_SERVER['REQUEST_METHOD'] = 'POST';
-    $valid = new Validator(['test' => 'test']);
+    $_SERVER['REQUEST_METHOD']  = 'POST';
+    $valid                      = new Validator(['test' => 'test']);
 
     $valid->test->required();
 
@@ -54,13 +54,15 @@ it('can run validation using method is_valid with closure (param)', function () 
         'test7' => 'test',
     ]);
 
-    expect($valid->is_valid(function (ValidPool $pool) {
-        $pool->rule('test1')->required();
-        $pool('test2')->required();
-        $pool->test3->required();
-        $pool->rule('test4', 'test5')->required();
-        $pool('test6', 'test7')->required();
-    }))->toBeTrue();
+    expect($valid->is_valid(
+        fn (ValidPool $pool) => [
+            $pool->rule('test1')->required(),
+            $pool('test2')->required(),
+            $pool->test3->required(),
+            $pool->rule('test4', 'test5')->required(),
+            $pool('test6', 'test7')->required(),
+        ]
+    ))->toBeTrue();
 });
 
 it('can run validation using method is_valid with closure (return)', function () {

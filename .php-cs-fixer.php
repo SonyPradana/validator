@@ -3,7 +3,7 @@
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__ . DIRECTORY_SEPARATOR . 'tests')
     ->in(__DIR__ . DIRECTORY_SEPARATOR . 'src')
-    ->append(['.php_cs']);
+    ->append(['.php-cs-fixer.dist.php']);
 
 $rules = [
     '@Symfony'               => true,
