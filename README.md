@@ -3,6 +3,7 @@
     <p align="center">
         <a href="https://packagist.org/packages/sonypradana/validator"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/sonypradana/validator"></a>
         <a href="https://github.com/sonypradana/validator/actions"><img alt="Latest Version" src="https://img.shields.io/github/stars/SonyPradana/validator"></a>
+        <a href="https://github.com/SonyPradana/validator/actions/workflows/tests.yml"><img alt="test past" src="https://github.com/SonyPradana/validator/actions/workflows/tests.yml/badge.svg"></a>
         <a href="https://github.com/SonyPradana/validator/blob/main/LICENSE.md"><img alt="License" src="https://img.shields.io/github/license/SonyPradana/validator"></a>
     </p>
 </p>
