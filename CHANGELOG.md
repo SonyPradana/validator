@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add costume validation `valid->valid($closure, $message)` and costume filter `filter->filter($closure)`
 
 ## [0.6.2] - 2022-03-13
 ### Fixed
