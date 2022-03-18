@@ -150,7 +150,30 @@ final class Filter
         return $this;
     }
 
-    // -------------------------------------------------------
+    /**
+     * Adding costume Fillter.
+     *
+     * @param Closure $costume_filter Callable return as string,
+     *                                can contain param as ($value. $param)
+     *
+     * @return self
+     */
+    public function filter(Closure $costume_filter)
+    {
+        if (is_callable($costume_filter)) {
+            $byte           = random_bytes(3);
+            $hex            = bin2hex($byte);
+            $rule_name      = 'filter_' . $hex;
+
+            Rule::add_filter($rule_name, $costume_filter);
+
+            $this->filter_rule[] = $rule_name;
+        }
+
+        return $this;
+    }
+
+    // Filter -------------------------------------------------------
 
     /**
      * Replace noise words in a string.

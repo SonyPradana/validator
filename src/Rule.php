@@ -44,7 +44,10 @@ final class Rule extends GUMP
 
         // add inveret costume validate message
         foreach ($messages as $rule => $message) {
-            $messages['invert_' . $rule] = $message;
+            $rule_key = 'invert_' . $rule;
+            if (!isset($messages[$rule_key])) {
+                $messages[$rule_key] = $message;
+            }
         }
 
         return $messages;

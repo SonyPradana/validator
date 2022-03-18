@@ -209,7 +209,35 @@ final class Valid
         return $this;
     }
 
-    // -------------------------------------------------------
+    /**
+     * Adding costume validation.
+     *
+     * @param Closure $costume_validation Callable return as boolean,
+     *                                    can contain param as ($field, $input, $param, $value)
+     * @param string  $message            Add costume message for validate
+     *
+     * @return self
+     */
+    public function valid(Closure $costume_validation, string $message = 'Valid costume validation')
+    {
+        if (is_callable($costume_validation)) {
+            $byte           = random_bytes(3);
+            $hex            = bin2hex($byte);
+            $rule_name      = 'validate_' . $hex;
+            $rule_invert    = 'invert_validate_' . $hex;
+            $message_invert = 'Not, ' . $message;
+            $invert         = fn ($field, $input, $param, $value) => !call_user_func($costume_validation, $field, $input, $param, $value);
+
+            Rule::add_validator($rule_name, $costume_validation, $message);
+            Rule::add_validator($rule_invert, $invert, $message_invert);
+
+            $this->validation_rule[] = $rule_name;
+        }
+
+        return $this;
+    }
+
+    // Validation Rule -----------------------------------------
 
     /**
      * Ensures the specified key value exists and is not empty
