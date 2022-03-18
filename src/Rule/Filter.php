@@ -163,7 +163,7 @@ final class Filter
         if (is_callable($costume_filter)) {
             $byte           = random_bytes(3);
             $hex            = bin2hex($byte);
-            $rule_name      = $hex;
+            $rule_name      = 'filter_' . $hex;
 
             Rule::add_filter($rule_name, $costume_filter);
 
