@@ -221,10 +221,10 @@ final class Valid
     public function valid(Closure $costume_validation, string $message = 'Valid costume validation')
     {
         if (is_callable($costume_validation)) {
-            $byte           = random_bytes(6);
+            $byte           = random_bytes(3);
             $hex            = bin2hex($byte);
-            $rule_name      = 'validate_' . $hex;
-            $rule_invert    = 'invert_validate_' . $hex;
+            $rule_name      = $hex;
+            $rule_invert    = 'invert_' . $hex;
             $message_invert = 'Not, ' . $message;
             $invert         = fn ($field, $input, $param, $value) => !call_user_func($costume_validation, $field, $input, $param, $value);
 

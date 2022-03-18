@@ -161,9 +161,9 @@ final class Filter
     public function filter(Closure $costume_filter)
     {
         if (is_callable($costume_filter)) {
-            $byte           = random_bytes(6);
+            $byte           = random_bytes(3);
             $hex            = bin2hex($byte);
-            $rule_name      = 'validate_' . $hex;
+            $rule_name      = $hex;
 
             Rule::add_filter($rule_name, $costume_filter);
 
