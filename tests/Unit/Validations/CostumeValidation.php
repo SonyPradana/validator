@@ -71,4 +71,4 @@ it('can add costume message validation (not)', function () {
     expect($validation->errors->all())->toMatchArray([
         'test' => 'Not, Costume error - Test',
     ]);
-})->skip(true);
+});

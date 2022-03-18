@@ -229,7 +229,6 @@ final class Valid
             $invert         = fn ($field, $input, $param, $value) => !call_user_func($costume_validation, $field, $input, $param, $value);
 
             Rule::add_validator($rule_name, $costume_validation, $message);
-            // FIXME: cant call costume error message invert validation.
             Rule::add_validator($rule_invert, $invert, $message_invert);
 
             $this->validation_rule[] = $rule_name;
