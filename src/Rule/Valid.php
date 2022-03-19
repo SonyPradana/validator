@@ -237,6 +237,20 @@ final class Valid
         return $this;
     }
 
+    /**
+     * Add validation rule with raw (string) rule.
+     *
+     * @param string $raw_rule Raw rule
+     *
+     * @return self
+     */
+    public function raw(string $raw_rule)
+    {
+        $this->validation_rule[] = $raw_rule;
+
+        return $this;
+    }
+
     // Validation Rule -----------------------------------------
 
     /**

@@ -64,6 +64,21 @@ final class Validator
     }
 
     /**
+     * Set new feild rule.
+     *
+     * @param string $name  Field name
+     * @param string $value Validation Rule
+     *
+     * @return self
+     */
+    public function __set($name, $value)
+    {
+        $this->field($name)->raw($value);
+
+        return $this;
+    }
+
+    /**
      * Add new valid rule.
      *
      * @param string $name Field name

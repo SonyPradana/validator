@@ -28,12 +28,19 @@ it('can add validation using __invoke', function () {
     expect($valid->is_valid())->toBeTrue();
 });
 
+it('can add validation using __set', function () {
+    $valid = new Validator(['test' => 'test']);
+
+    $valid->test = 'required';
+
+    expect($valid->is_valid())->toBeTrue();
+});
+
 it('can add validator rule using method validation (param)', function () {
-    $v = Validator::make(['test' => 123])
+    $v = Validator::make(['test' => 'test'])
         ->validation(function () {
             $v = new ValidPool();
             $v('test')->required();
-            $v('d')->alpha();
 
             return $v;
         })->is_valid();
@@ -42,10 +49,9 @@ it('can add validator rule using method validation (param)', function () {
 });
 
 it('can add validator rule using method validation (return)', function () {
-    $v = Validator::make(['test' => 123])
+    $v = Validator::make(['test' => 'test'])
         ->validation(fn (ValidPool $v) => [
             $v('test')->required(),
-            $v('d')->alpha(),
         ])->is_valid();
 
     expect($v)->toBeTrue();

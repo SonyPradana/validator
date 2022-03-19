@@ -21,6 +21,25 @@ it('can add valid using __get with exist rule', function () {
     ]);
 });
 
+it('can add valid using __set', function () {
+    $pool = new ValidPool();
+    $pool->test = 'required';
+
+    expect($pool->get_pool())->toMatchArray([
+        'test' => 'required',
+    ]);
+});
+
+it('can add valid using __set with exist rule', function () {
+    $pool = new ValidPool();
+    $pool->test = 'required';
+    $pool->test = 'alpha';
+
+    expect($pool->get_pool())->toMatchArray([
+        'test' => 'required|alpha',
+    ]);
+});
+
 it('can add valid using __invoke', function () {
     $pool = new ValidPool();
     $pool('test')->required();
