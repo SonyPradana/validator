@@ -50,14 +50,19 @@ final class Validator
      *
      * @param string[]     $fileds        Field array to validate
      * @param Closure|null $validate_pool Closure with param as ValidPool
+     * @param Closure|null $filter_pool   Closure with param as ValidPool
      *
      * @return static
      */
-    public static function make($fileds = [], Closure $validate_pool = null)
+    public static function make($fileds = [], Closure $validate_pool = null, Closure $filter_pool = null)
     {
         $validate = new static($fileds);
         if ($validate_pool !== null) {
             $validate->validation($validate_pool);
+        }
+
+        if ($filter_pool !== null) {
+            $validate->filters($filter_pool);
         }
 
         return $validate;

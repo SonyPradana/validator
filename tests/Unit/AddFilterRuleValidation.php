@@ -70,6 +70,44 @@ it('can add new filter with exist rule using method filters', function () {
     );
 });
 
+it('can add filter rule using pools callback from method make() (param)', function () {
+    $v = Validator::make(
+        [
+            'test' => 'test',
+        ],
+        null,
+        fn (FilterPool $f) => [
+            $f('test')->upper_case(),
+        ]
+    );
+
+    expect($v)
+        ->filters->get('test')
+        ->toEqual('TEST')
+    ;
+});
+
+it('can add filter rule using pools callback from method make() (return)', function () {
+    $v = Validator::make(
+        [
+            'test' => 'Test',
+        ],
+        null,
+        function () {
+            $f = new FilterPool();
+
+            $f('test')->upper_case();
+
+            return $f;
+        }
+    );
+
+    expect($v)
+        ->filters->get('test')
+        ->toEqual('TEST')
+    ;
+});
+
 // Multy ------------------------------------------------
 
 it('can add multy filter using method filter', function () {

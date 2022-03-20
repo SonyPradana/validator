@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add costume validation `valid->valid($closure, $message)` and costume filter `filter->filter($closure)`
 - Add method `Valid->raw($raw_rule)` to add raw valiation.
 - Add method __set to add new validation `Validator->__set` and `ValidPool->__set'.
+- Add method `Filter->raw($raw_rule)` to add raw filter.
+- Add method __set to add new Filter `ValidPool->__set'.
+- Pass third params to add filters rule from method Make `Validator::make($fields, $validPool, $filterPool)`.
 
 ## [0.6.2] - 2022-03-13
 ### Fixed
