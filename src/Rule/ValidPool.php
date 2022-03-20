@@ -119,6 +119,21 @@ final class ValidPool
     }
 
     /**
+     * Set new feild rule.
+     *
+     * @param string $name  Field name
+     * @param string $value Validation Rule
+     *
+     * @return self
+     */
+    public function __set($name, $value)
+    {
+        $this->rule($name)->raw($value);
+
+        return $this;
+    }
+
+    /**
      * Helper to add multy rule in single method.
      *
      * @param Valid                     $valid  Instans for new validation rule

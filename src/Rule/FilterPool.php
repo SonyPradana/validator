@@ -119,6 +119,21 @@ final class FilterPool
     }
 
     /**
+     * Set new feild rule.
+     *
+     * @param string $name  Field name
+     * @param string $value Filter Rule
+     *
+     * @return self
+     */
+    public function __set($name, $value)
+    {
+        $this->rule($name)->raw($value);
+
+        return $this;
+    }
+
+    /**
      * Helper to add multy filter rule in single method.
      *
      * @param Filter                    $filter Instans for new filter rule

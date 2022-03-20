@@ -173,6 +173,19 @@ final class Filter
         return $this;
     }
 
+    /**
+     * Add filter rule with raw (string) rule.
+     *
+     * @param string $raw_rule Raw rule
+     *
+     * @return self
+     */
+    public function raw($raw_rule)
+    {
+        $this->filter_rule[] = $raw_rule;
+
+        return $this;
+    }
     // Filter -------------------------------------------------------
 
     /**
