@@ -244,7 +244,7 @@ final class Valid
      *
      * @return self
      */
-    public function raw(string $raw_rule)
+    public function raw($raw_rule)
     {
         $this->validation_rule[] = $raw_rule;
 
