@@ -11,14 +11,14 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0",
-        "wixel/gump": "^2.0",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "wixel/gump": "^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.4.0",
-        "pestphp/pest": "^1.21",
-        "phpstan/phpstan": "^1.2.0",
-        "symfony/var-dumper": "^5.4.1"
+        "friendsofphp/php-cs-fixer": "^3.10",
+        "pestphp/pest": "^1.22",
+        "phpstan/phpstan": "^1.8",
+        "symfony/var-dumper": "^5.4"
     },
     "autoload": {
         "psr-4": {
