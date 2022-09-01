@@ -11,7 +11,7 @@
 # Validation & Filter
 
 Build validation with elegant,
-power by [(Wixel/GUMP)](https://github.com/Wixel/GUMP)
+power by [(Wixel/GUMP)](https://github.com/Wixel/GUMP) ver 2.0
 
 ## Validation
 ```php
