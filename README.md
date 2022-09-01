@@ -90,7 +90,6 @@ if ($is_valid === true) {
 - `valid_array_size_greater()`
 - `valid_array_size_lesser()`
 - `valid_array_size_equal()`
-- `valid_twitter()`
 
 And
 - `not()`, for invert all available method.

@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0",
-        "wixel/gump": "^1.12.2",
+        "wixel/gump": "^2.0",
         "ext-intl": "*"
     },
     "require-dev": {

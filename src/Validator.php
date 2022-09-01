@@ -258,9 +258,9 @@ final class Validator
      *
      * @param \Exception|null $exception Default throw exception
      *
-     * @throws Exception
-     *
      * @return bool Return true if validation valid
+     *
+     * @throws Exception
      */
     public function validOrException(Exception $exception = null)
     {

@@ -52,7 +52,6 @@ namespace Validator\Contract;
  * @property string $valid_array_size_greater
  * @property string $valid_array_size_lesser
  * @property string $valid_array_size_equal
- * @property string $valid_twitter
  */
 interface ValidationPropertyInterface
 {

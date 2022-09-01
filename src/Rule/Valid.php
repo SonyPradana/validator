@@ -738,14 +738,4 @@ final class Valid
 
         return $this;
     }
-
-    /**
-     * Determine if the provided value is a valid Twitter account.
-     */
-    public function valid_twitter(): self
-    {
-        $this->validation_rule[] = __FUNCTION__;
-
-        return $this;
-    }
 }
