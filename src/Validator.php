@@ -40,7 +40,7 @@ final class Validator
     public function __construct($fileds = [])
     {
         $this->Rule        = new Rule();
-        $this->fields      = $fileds;
+        $this->fields($fileds);
         $this->valid_pool  = new ValidPool();
         $this->filter_pool = new FilterPool();
     }
@@ -147,9 +147,11 @@ final class Validator
      *
      * @param array<string, string> $fields Field array to validate
      */
-    public function fields(array $fields): self
+    public function fields($fields): self
     {
-        $this->fields = $fields;
+        foreach ($fields as $key => $field) {
+            $this->fields[$key] = $field;
+        }
 
         return $this;
     }
