@@ -10,7 +10,7 @@ use Validator\Contract\ValidationPropertyInterface;
 /**
  * @implements ArrayAccess<string,string>
  */
-final class Message implements ArrayAccess, ValidationPropertyInterface
+final class Message implements \ArrayAccess, ValidationPropertyInterface
 {
     /** @var array<string, string> */
     private $messages = [];

@@ -26,8 +26,6 @@ final class Filter
 
     /**
      * Function to create and return previously created instance.
-     *
-     * @return Filter
      */
     public static function with(): self
     {
@@ -94,15 +92,15 @@ final class Filter
      *
      * Reset only boolean false.
      *
-     * @param Closure $condition Closure return boolean
+     * @param \Closure $condition Closure return boolean
      */
-    public function where(Closure $condition): string
+    public function where(\Closure $condition): string
     {
         // get return closure
         $result = call_user_func_array($condition, []);
         // throw exception if closure not return boolean
         if (!is_bool($result)) {
-            throw new Exception('Condition closure not return boolean', 1);
+            throw new \Exception('Condition closure not return boolean', 1);
         }
 
         // false condition
@@ -120,15 +118,15 @@ final class Filter
      *
      * Reset only boolean false.
      *
-     * @param Closure $condition Closure return boolean
+     * @param \Closure $condition Closure return boolean
      */
-    public function if(Closure $condition): self
+    public function if(\Closure $condition): self
     {
         // get return closure
         $result = call_user_func_array($condition, []);
         // throw exception if closure not return boolean
         if (!is_bool($result)) {
-            throw new Exception('Condition closure not return boolean', 1);
+            throw new \Exception('Condition closure not return boolean', 1);
         }
 
         // add condition to rule
@@ -153,12 +151,12 @@ final class Filter
     /**
      * Adding costume Fillter.
      *
-     * @param Closure $costume_filter Callable return as string,
-     *                                can contain param as ($value. $param)
+     * @param \Closure $costume_filter Callable return as string,
+     *                                 can contain param as ($value. $param)
      *
      * @return self
      */
-    public function filter(Closure $costume_filter)
+    public function filter(\Closure $costume_filter)
     {
         if (is_callable($costume_filter)) {
             $byte           = random_bytes(3);

@@ -34,8 +34,6 @@ final class Valid
 
     /**
      * Function to create and return previously created instance.
-     *
-     * @return Valid
      */
     public static function with(): self
     {
@@ -153,15 +151,15 @@ final class Valid
      *
      * Reset only boolean false.
      *
-     * @param Closure $condition Closure return boolean
+     * @param \Closure $condition Closure return boolean
      */
-    public function where(Closure $condition): string
+    public function where(\Closure $condition): string
     {
         // get return closure
         $result = call_user_func_array($condition, []);
         // throw exception if closure not return boolean
         if (!is_bool($result)) {
-            throw new Exception('Condition closure not return boolean', 1);
+            throw new \Exception('Condition closure not return boolean', 1);
         }
 
         // false condition
@@ -179,15 +177,15 @@ final class Valid
      *
      * Reset only boolean false.
      *
-     * @param Closure $condition Closure return boolean
+     * @param \Closure $condition Closure return boolean
      */
-    public function if(Closure $condition): self
+    public function if(\Closure $condition): self
     {
         // get return closure
         $result = call_user_func_array($condition, []);
         // throw exception if closure not return boolean
         if (!is_bool($result)) {
-            throw new Exception('Condition closure not return boolean', 1);
+            throw new \Exception('Condition closure not return boolean', 1);
         }
 
         // add condition to rule
@@ -212,13 +210,13 @@ final class Valid
     /**
      * Adding costume validation.
      *
-     * @param Closure $costume_validation Callable return as boolean,
-     *                                    can contain param as ($field, $input, $param, $value)
-     * @param string  $message            Add costume message for validate
+     * @param \Closure $costume_validation Callable return as boolean,
+     *                                     can contain param as ($field, $input, $param, $value)
+     * @param string   $message            Add costume message for validate
      *
      * @return self
      */
-    public function valid(Closure $costume_validation, string $message = 'Valid costume validation')
+    public function valid(\Closure $costume_validation, string $message = 'Valid costume validation')
     {
         if (is_callable($costume_validation)) {
             $byte           = random_bytes(3);

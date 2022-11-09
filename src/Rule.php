@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Validator;
 
-use GUMP;
 use Validator\Traits\CostumeFilterTrait;
 use Validator\Traits\CostumeValidationTrait;
 use Validator\Traits\InvertValidationTrait;
@@ -12,7 +11,7 @@ use Validator\Traits\InvertValidationTrait;
 /**
  * @internal
  */
-final class Rule extends GUMP
+final class Rule extends \GUMP
 {
     // validation
     use InvertValidationTrait;
