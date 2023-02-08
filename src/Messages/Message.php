@@ -83,6 +83,7 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
      *
      * @return string|null Can return all value types
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->messages[$offset]) ? $this->messages[$offset] : null;
