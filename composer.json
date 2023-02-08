@@ -15,7 +15,7 @@
         "wixel/gump": "^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.13",
+        "friendsofphp/php-cs-fixer": "^3.14",
         "pestphp/pest": "^1.22",
         "phpstan/phpstan": "^1.9",
         "symfony/var-dumper": "^5.4"
