@@ -33,11 +33,11 @@ final class Collection
      * @param string $key  Set item Key
      * @param string $item Set item Value
      *
-     * @return self
+     * @return void
      */
     public function __set($key, $item)
     {
-        return $this->set($key, $item);
+        $this->set($key, $item);
     }
 
     /**

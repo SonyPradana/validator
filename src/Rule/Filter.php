@@ -33,7 +33,7 @@ final class Filter
     }
 
     /**
-     *  @return string Rule of Filter
+     * @return string Rule of Filter
      */
     public function get_filter(): string
     {

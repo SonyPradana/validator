@@ -124,13 +124,11 @@ final class ValidPool
      * @param string $name  Field name
      * @param string $value Validation Rule
      *
-     * @return self
+     * @return void
      */
     public function __set($name, $value)
     {
         $this->rule($name)->raw($value);
-
-        return $this;
     }
 
     /**

@@ -21,13 +21,11 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
      * @param string $name  Rule Name
      * @param string $value Message for this rule
      *
-     * @return self
+     * @return void
      */
     public function __set($name, $value)
     {
         $this->messages[$name] = $value;
-
-        return $this;
     }
 
     /**

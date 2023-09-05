@@ -6,8 +6,6 @@ if (!function_exists('vr')) {
     /**
      * Alias for validation rule,
      * return string validation rule.
-     *
-     * @return \Validator\Rule\Valid
      */
     function vr(): Validator\Rule\Valid
     {
@@ -31,8 +29,6 @@ if (!function_exists('validate')) {
      * Alias for validator.
      *
      * @param array<string> $feild Feild input
-     *
-     * @return \Validator\Validator
      */
     function validate(array $feild): Validator\Validator
     {

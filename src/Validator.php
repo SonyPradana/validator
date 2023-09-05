@@ -74,13 +74,11 @@ final class Validator
      * @param string $name  Field name
      * @param string $value Validation Rule
      *
-     * @return self
+     * @return void
      */
     public function __set($name, $value)
     {
         $this->field($name)->raw($value);
-
-        return $this;
     }
 
     /**
@@ -203,7 +201,7 @@ final class Validator
      * @param \Closure|null $rule_validation Closure with param as ValidPool,
      *                                       if null return validate this currect validation
      */
-    public function is_valid(?\Closure $rule_validation = null): bool
+    public function is_valid(\Closure $rule_validation = null): bool
     {
         // load from property
         if ($rule_validation === null) {
@@ -231,7 +229,7 @@ final class Validator
      *
      * @return bool True if have a error
      */
-    public function is_error(?\Closure $rule_validation = null): bool
+    public function is_error(\Closure $rule_validation = null): bool
     {
         return !$this->is_valid($rule_validation);
     }
@@ -288,7 +286,7 @@ final class Validator
      *
      * @return mixed|array<string, string> Fields input after filter
      */
-    public function filter_out(?\Closure $rule_filter = null)
+    public function filter_out(\Closure $rule_filter = null)
     {
         if ($rule_filter === null) {
             return $this->Rule->filter($this->fields, $this->filter_pool->get_pool());

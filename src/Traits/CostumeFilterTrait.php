@@ -13,10 +13,12 @@ trait CostumeFilterTrait
      * Filter doest perfome anythink.
      * Costume rule to prevent runtime error when validation is empty.
      *
-     * @param mixed                 $value
+     * @template T
+     *
+     * @param T                     $value
      * @param array<string, string> $params
      *
-     * @return mixed
+     * @return T
      */
     protected function filter_($value, array $params = [])
     {

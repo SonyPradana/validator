@@ -41,7 +41,7 @@ final class Valid
     }
 
     /**
-     *  @return string Rule of validation
+     * @return string Rule of validation
      */
     public function get_validation(): string
     {
