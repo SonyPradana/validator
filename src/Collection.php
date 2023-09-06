@@ -4,13 +4,25 @@ declare(strict_types=1);
 
 namespace Validator;
 
-final class Collection
+use Validator\Contract\CollectionInterface;
+
+/**
+ * Simple collection helper.
+ *
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @implements CollectionInterface<TKey, TValue>
+ */
+final class Collection implements CollectionInterface
 {
-    /** @var array<string, string> */
+    /**
+     * @var array<TKey, TValue>
+     */
     private $collection = [];
 
     /**
-     * @param array<string, string> $collection Array Collection
+     * @param array<TKey, TValue> $collection Array Collection
      */
     public function __construct($collection = [])
     {
@@ -20,9 +32,9 @@ final class Collection
     /**
      * Create new instance Collection using static method.
      *
-     * @param array<string, string> $collection Array Collection
+     * @param array<TKey, TValue> $collection Array Collection
      *
-     * @return Collection
+     * @return Collection<TKey, TValue>
      */
     public static function make($collection = [])
     {
@@ -30,8 +42,16 @@ final class Collection
     }
 
     /**
-     * @param string $key  Set item Key
-     * @param string $item Set item Value
+     * @return array<TKey, TValue>
+     */
+    public function toArray(): array
+    {
+        return $this->collection;
+    }
+
+    /**
+     * @param TKey   $key  Set item Key
+     * @param TValue $item Set item Value
      *
      * @return void
      */
@@ -41,9 +61,9 @@ final class Collection
     }
 
     /**
-     * @param string $key Key tobe find
+     * @param TKey $key Key tobe find
      *
-     * @return string|null Items from collection
+     * @return TValue|null Items from collection
      */
     public function __get($key)
     {
@@ -53,9 +73,11 @@ final class Collection
     /**
      * Replace current collection with new collection.
      *
-     * @param array<string, string> $collection
+     * @param array<TKey, TValue> $collection
+     *
+     * @return $this
      */
-    public function replace($collection): self
+    public function replace($collection)
     {
         foreach ($collection as $key => $item) {
             $this->set($key, $item);
@@ -65,22 +87,24 @@ final class Collection
     }
 
     /**
-     * @param string $key Key tobe find
+     * @param TKey $key Key tobe find
      *
      * @return bool True if Key is exist
      */
     public function has($key): bool
     {
-        return isset($this->collection[$key]);
+        return array_key_exists($key, $this->collection);
     }
 
     /**
      * Get item by using key.
      *
-     * @param string      $key     Key tobe find
-     * @param string|null $default Default item if key not found
+     * @template TGetDefault
      *
-     * @return string|null Items from collection
+     * @param TKey                    $key     Key tobe find
+     * @param TValue|TGetDefault|null $default Default item if key not found
+     *
+     * @return TValue|TGetDefault|null Items from collection
      */
     public function get($key, $default = null)
     {
@@ -90,10 +114,12 @@ final class Collection
     /**
      * Set Collection item by key, no exit key return new item.
      *
-     * @param string $key  Set item Key
-     * @param string $item Set item Value
+     * @param TKey   $key  Set item Key
+     * @param TValue $item Set item Value
+     *
+     * @return $this
      */
-    public function set(&$key, $item): self
+    public function set($key, $item)
     {
         $this->collection[$key] = $item;
 
@@ -109,10 +135,56 @@ final class Collection
     }
 
     /**
-     * @return array<string, string> Array collection
+     * @return array<TKey, TValue> Array collection
      */
     public function all(): array
     {
         return $this->collection;
+    }
+
+    /**
+     * @param TKey $offset
+     */
+    public function offsetExists($offset): bool
+    {
+        return $this->has($offset);
+    }
+
+    /**
+     * @param TKey $offset
+     *
+     * @return TValue|null
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
+    {
+        return $this->get($offset);
+    }
+
+    /**
+     * @param TKey   $offset
+     * @param TValue $value
+     */
+    public function offsetSet($offset, $value): void
+    {
+        $this->set($offset, $value);
+    }
+
+    /**
+     * @param TKey $offset
+     */
+    public function offsetUnset($offset): void
+    {
+        if ($this->has($offset)) {
+            unset($this->collection[$offset]);
+        }
+    }
+
+    /**
+     * @return \Traversable<TKey, TValue>
+     */
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->toArray());
     }
 }
