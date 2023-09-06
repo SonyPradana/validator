@@ -28,10 +28,10 @@ if (!function_exists('validate')) {
     /**
      * Alias for validator.
      *
-     * @param array<string> $feild Feild input
+     * @param array<string, mixed> $field Field input
      */
-    function validate(array $feild): Validator\Validator
+    function validate($field): Validator\Validator
     {
-        return new \Validator\Validator($feild);
+        return new \Validator\Validator($field);
     }
 }

@@ -22,7 +22,7 @@ final class Validator
 {
     private Rule $Rule;
 
-    /** @var string[] */
+    /** @var array<string, mixed> */
     private $fields = [];
     /** @var ValidPool Valid rule collection */
     private $valid_pool;
@@ -35,7 +35,7 @@ final class Validator
     /**
      * Create validation and filter.
      *
-     * @param string[] $fileds Field array to validate
+     * @param array<string, mixed> $fileds Field array to validate
      */
     public function __construct($fileds = [])
     {
@@ -48,9 +48,9 @@ final class Validator
     /**
      * Create validation and filter using static.
      *
-     * @param string[]      $fileds        Field array to validate
-     * @param \Closure|null $validate_pool Closure with param as ValidPool
-     * @param \Closure|null $filter_pool   Closure with param as ValidPool
+     * @param array<string, mixed> $fileds        Field array to validate
+     * @param \Closure|null        $validate_pool Closure with param as ValidPool
+     * @param \Closure|null        $filter_pool   Closure with param as ValidPool
      *
      * @return static
      */
@@ -86,7 +86,7 @@ final class Validator
      *
      * @param string $name Field name
      *
-     * @return Valid|Collection New rule Validation
+     * @return Valid|Collection<string, mixed>|mixed New rule Validation
      */
     public function __get($name)
     {
@@ -95,7 +95,6 @@ final class Validator
         }
 
         if ($name === 'filters') {
-            // @phpstan-ignore-next-line
             return new Collection($this->filter_out());
         }
 
@@ -143,7 +142,7 @@ final class Validator
     /**
      * Set fields or input for validation.
      *
-     * @param array<string, string> $fields Field array to validate
+     * @param array<string, mixed> $fields Field array to validate
      */
     public function fields($fields): self
     {
@@ -157,7 +156,7 @@ final class Validator
     /**
      * get fields or input validation.
      *
-     * @return array<string, string> Fields
+     * @return array<string, mixed> Fields
      */
     public function get_fields(): array
     {
@@ -186,7 +185,7 @@ final class Validator
     /**
      * Process the validation errors and return an array of errors with field names as keys.
      *
-     * @return Collection Validation errors
+     * @return Collection<string, string> Validation errors
      *
      * @throws \Exception
      */
@@ -284,12 +283,15 @@ final class Validator
     /**
      * Filter the input data.
      *
-     * @return mixed|array<string, string> Fields input after filter
+     * @return array<string, mixed> Fields input after filter
      */
     public function filter_out(\Closure $rule_filter = null)
     {
         if ($rule_filter === null) {
-            return $this->Rule->filter($this->fields, $this->filter_pool->get_pool());
+            /** @var array<string, mixed> */
+            $filter = (array) $this->Rule->filter($this->fields, $this->filter_pool->get_pool());
+
+            return $filter;
         }
 
         // overwrite input field
@@ -299,7 +301,10 @@ final class Validator
             $rules_filter[$field] = $rule->get_filter();
         }
 
-        return $this->Rule->filter($this->fields, $rules_filter);
+        /** @var array<string, mixed> */
+        $filter = (array) $this->Rule->filter($this->fields, $rules_filter);
+
+        return $filter;
     }
 
     /**
