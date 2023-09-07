@@ -210,9 +210,8 @@ final class Valid
     /**
      * Adding costume validation.
      *
-     * @param callable(): bool $costume_validation Callable return as boolean,
-     *                                             can contain param as ($field, $input, $param, $value)
-     * @param string           $message            Add costume message for validate
+     * @param callable(string, array<string, string>, array<string, string>, mixed): bool $costume_validation Callable return as boolean, can contain param as ($field, $input, $param, $value)
+     * @param string                                                                      $message            Add costume message for validate
      *
      * @return self
      */

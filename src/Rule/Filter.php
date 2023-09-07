@@ -151,8 +151,10 @@ final class Filter
     /**
      * Adding costume Fillter.
      *
-     * @param callable(): string $costume_filter Callable return as string,
-     *                                           can contain param as ($value. $param)
+     * @template T
+     *
+     * @param callable(T, array<string, string>): T $costume_filter Callable return as string,
+     *                                                              can contain param as ($value, $params)
      *
      * @return self
      */
