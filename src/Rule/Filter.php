@@ -92,9 +92,9 @@ final class Filter
      *
      * Reset only boolean false.
      *
-     * @param \Closure $condition Closure return boolean
+     * @param callable(): bool $condition Closure return boolean
      */
-    public function where(\Closure $condition): string
+    public function where($condition): string
     {
         // get return closure
         $result = call_user_func_array($condition, []);
@@ -118,9 +118,9 @@ final class Filter
      *
      * Reset only boolean false.
      *
-     * @param \Closure $condition Closure return boolean
+     * @param callable(): bool $condition Closure return boolean
      */
-    public function if(\Closure $condition): self
+    public function if($condition): self
     {
         // get return closure
         $result = call_user_func_array($condition, []);
@@ -151,12 +151,12 @@ final class Filter
     /**
      * Adding costume Fillter.
      *
-     * @param \Closure $costume_filter Callable return as string,
-     *                                 can contain param as ($value. $param)
+     * @param callable(): string $costume_filter Callable return as string,
+     *                                           can contain param as ($value. $param)
      *
      * @return self
      */
-    public function filter(\Closure $costume_filter)
+    public function filter($costume_filter)
     {
         if (is_callable($costume_filter)) {
             $byte           = random_bytes(3);

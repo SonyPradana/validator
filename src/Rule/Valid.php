@@ -151,9 +151,9 @@ final class Valid
      *
      * Reset only boolean false.
      *
-     * @param \Closure $condition Closure return boolean
+     * @param callable(): bool $condition Closure return boolean
      */
-    public function where(\Closure $condition): string
+    public function where($condition): string
     {
         // get return closure
         $result = call_user_func_array($condition, []);
@@ -177,9 +177,9 @@ final class Valid
      *
      * Reset only boolean false.
      *
-     * @param \Closure $condition Closure return boolean
+     * @param callable(): bool $condition Closure return boolean
      */
-    public function if(\Closure $condition): self
+    public function if($condition): self
     {
         // get return closure
         $result = call_user_func_array($condition, []);
@@ -210,13 +210,13 @@ final class Valid
     /**
      * Adding costume validation.
      *
-     * @param \Closure $costume_validation Callable return as boolean,
-     *                                     can contain param as ($field, $input, $param, $value)
-     * @param string   $message            Add costume message for validate
+     * @param callable(): bool $costume_validation Callable return as boolean,
+     *                                             can contain param as ($field, $input, $param, $value)
+     * @param string           $message            Add costume message for validate
      *
      * @return self
      */
-    public function valid(\Closure $costume_validation, string $message = 'Valid costume validation')
+    public function valid($costume_validation, string $message = 'Valid costume validation')
     {
         if (is_callable($costume_validation)) {
             $byte           = random_bytes(3);

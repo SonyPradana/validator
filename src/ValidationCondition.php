@@ -30,9 +30,9 @@ final class ValidationCondition
      *
      * Error message send using param closure
      *
-     * @param \Closure $condition Excute condtion
+     * @param callable(string): void $condition Excute condtion
      */
-    public function else(\Closure $condition): void
+    public function else($condition): void
     {
         call_user_func($condition, $this->error);
     }

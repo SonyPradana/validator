@@ -48,13 +48,13 @@ final class Validator
     /**
      * Create validation and filter using static.
      *
-     * @param array<string, mixed> $fileds        Field array to validate
-     * @param \Closure|null        $validate_pool Closure with param as ValidPool
-     * @param \Closure|null        $filter_pool   Closure with param as ValidPool
+     * @param array<string, mixed>                      $fileds        Field array to validate
+     * @param callable(ValidPool=): (ValidPool|mixed)   $validate_pool Closure with param as ValidPool
+     * @param callable(FilterPool=): (FilterPool|mixed) $filter_pool   Closure with param as ValidPool
      *
      * @return static
      */
-    public static function make($fileds = [], \Closure $validate_pool = null, \Closure $filter_pool = null)
+    public static function make($fileds = [], $validate_pool = null, $filter_pool = null)
     {
         $validate = new static($fileds);
         if ($validate_pool !== null) {
@@ -197,10 +197,10 @@ final class Validator
     /**
      * Inline validation field.
      *
-     * @param \Closure|null $rule_validation Closure with param as ValidPool,
-     *                                       if null return validate this currect validation
+     * @param callable(ValidPool=): (ValidPool|mixed) $rule_validation Closure with param as ValidPool,
+     *                                                                 if null return validate this currect validation
      */
-    public function is_valid(\Closure $rule_validation = null): bool
+    public function is_valid($rule_validation = null): bool
     {
         // load from property
         if ($rule_validation === null) {
@@ -223,12 +223,12 @@ final class Validator
      * Inline validation field.
      * Invert from is_valid.
      *
-     * @param \Closure|null $rule_validation Closure with param as ValidPool,
-     *                                       if null return validate this currect validation
+     * @param callable(ValidPool=): (ValidPool|mixed) $rule_validation Closure with param as ValidPool,
+     *                                                                 if null return validate this currect validation
      *
      * @return bool True if have a error
      */
-    public function is_error(\Closure $rule_validation = null): bool
+    public function is_error($rule_validation = null): bool
     {
         return !$this->is_valid($rule_validation);
     }
@@ -237,9 +237,9 @@ final class Validator
      * Execute closuer when validation is true,
      * and return else statment.
      *
-     * @param \Closure $condition Excute closure
+     * @param callable(ValidPool=): (ValidPool|mixed) $condition Excute closure
      */
-    public function if_valid(\Closure $condition): ValidationCondition
+    public function if_valid($condition): ValidationCondition
     {
         $val = $this->Rule->validate($this->fields, $this->valid_pool->get_pool());
 
@@ -283,9 +283,11 @@ final class Validator
     /**
      * Filter the input data.
      *
+     * @param callable(FilterPool=): (FilterPool|mixed) $rule_filter Closure of FilterPool
+     *
      * @return array<string, mixed> Fields input after filter
      */
-    public function filter_out(\Closure $rule_filter = null)
+    public function filter_out($rule_filter = null)
     {
         if ($rule_filter === null) {
             /** @var array<string, mixed> */
@@ -339,9 +341,9 @@ final class Validator
      * Adding validation rule using ValidPool Callback.
      * Pass param as ValidPool in callback to adding rule.
      *
-     * @param \Closure $pools Closure with param as ValidPool
+     * @param callable(ValidPool=): (ValidPool|mixed) $pools Closure with param as ValidPool
      */
-    public function validation(\Closure $pools): self
+    public function validation($pools): self
     {
         $this->valid_pool->combine(
             $this->closure_to_validation($pools)
@@ -354,9 +356,9 @@ final class Validator
      * Adding Filter rule using FilterPool Callback.
      * Pass param as FilterPool in callback to adding rule.
      *
-     * @param \Closure $pools Closure with param as FilterPool
+     * @param callable(FilterPool=): (FilterPool|mixed) $pools Closure with param as FilterPool
      */
-    public function filters(\Closure $pools): self
+    public function filters($pools): self
     {
         $this->filter_pool->combine(
             $this->closure_to_filter($pools)
@@ -368,11 +370,11 @@ final class Validator
     /**
      * Helper to get rules from Closure.
      *
-     * @param \Closure $rule_validation ValidPool return or param
+     * @param callable(ValidPool=): (ValidPool|mixed) $rule_validation closure of ValidPool
      *
      * @return ValidPool Validation rules
      */
-    private function closure_to_validation(\Closure $rule_validation): ValidPool
+    private function closure_to_validation($rule_validation): ValidPool
     {
         $pool  = new ValidPool();
 
@@ -387,11 +389,11 @@ final class Validator
     /**
      * Helper to get rules from Closure.
      *
-     * @param \Closure $rule_filter FilterPool return or param
+     * @param callable(FilterPool=): (FilterPool|mixed) $rule_filter closure of FillterPoll
      *
      * @return FilterPool Filter rules
      */
-    private function closure_to_filter(\Closure $rule_filter): FilterPool
+    private function closure_to_filter($rule_filter): FilterPool
     {
         $pool  = new FilterPool();
 
