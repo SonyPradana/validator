@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.8.2] - 2023-09-07
+### Changed
+- Change return type of `__set` to `void`.
+- Change `Collection::class` using generic type.
+- Improve parameter type and return type include parameter callback type.
+
+## [0.8.1] - 2022-09-11
+### Changed
+- Support adding filed using IteratorAggregate interface.
+
 ## [0.8.0] - 2022-09-01
 ### Changed
 - Update `Wixel/GUMP` to version 2.0.
