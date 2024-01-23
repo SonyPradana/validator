@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.8.3] - 2024-01-23
+### Added
+- Added `Validator::setErrorMessage` add costume error massage using array paramter.
+
 ## [0.8.2] - 2023-09-07
 ### Changed
 - Change return type of `__set` to `void`.
@@ -114,4 +118,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.2.0] - 2021-12-30
 ### Added
 - Add filter input
-- Add filter rule method `noise_words()`, `rmpunctuation()`, `urlencode()`, `sanitize_email()`, `sanitize_numbers()`, `sanitize_floats()`, `sanitize_string()`, `boolean()`, `basic_tags()`, `whole_number()`, `ms_word_characters()`, `lower_case()`, `upper_case()`, `slug()`, `trim()`, 
+- Add filter rule method `noise_words()`, `rmpunctuation()`, `urlencode()`, `sanitize_email()`, `sanitize_numbers()`, `sanitize_floats()`, `sanitize_string()`, `boolean()`, `basic_tags()`, `whole_number()`, `ms_word_characters()`, `lower_case()`, `upper_case()`, `slug()`, `trim()`,
