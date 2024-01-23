@@ -16,9 +16,9 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.48",
-        "pestphp/pest": "^1.23",
+        "pestphp/pest": "^2.0",
         "phpstan/phpstan": "^1.10",
-        "symfony/var-dumper": "^5.4 || ^6.4"
+        "symfony/var-dumper": "^6.4"
     },
     "autoload": {
         "psr-4": {
