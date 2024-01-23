@@ -18,14 +18,35 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
     /**
      * Set message value using __set.
      *
-     * @param string $name  Rule Name
-     * @param string $value Message for this rule
-     *
      * @return void
      */
-    public function __set($name, $value)
+    public function __set($rule, $message)
     {
-        $this->messages[$name] = $value;
+        $this->set($rule, $message);
+    }
+
+    /**
+     * Add error message directive to poolcolection.
+     */
+    public function set(string $rule, string $message): self
+    {
+        $this->messages[$rule] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Add error message directive to poolcolection.
+     *
+     * @param array<string, string> $errorMessages
+     */
+    public function add(array $errorMessages): self
+    {
+        foreach ($errorMessages as $rule => $message) {
+            $this->set($rule, $message);
+        }
+
+        return $this;
     }
 
     /**
