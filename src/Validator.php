@@ -6,6 +6,7 @@ namespace Validator;
 
 use Closure;
 use Exception;
+use Validator\Messages\Message;
 use Validator\Messages\MessagePool;
 use Validator\Rule\Filter;
 use Validator\Rule\FilterPool;
@@ -414,6 +415,20 @@ final class Validator
     public function messages(): MessagePool
     {
         return $this->messages[] = new MessagePool();
+    }
+
+    /**
+     * Set field-rule specific error messages.
+     *
+     * @param array<string, array<string, string>> $messages
+     */
+    public function setErrorMessages($messages): void
+    {
+        foreach ($messages as $field => $message_string) {
+            $message_pool = new MessagePool();
+
+            $this->messages[] = $message_pool->set($field, (new Message())->add($message_string));
+        }
     }
 
     /**

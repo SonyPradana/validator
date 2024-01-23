@@ -100,3 +100,18 @@ it('can costume field error message (use messsage array)', function () {
         'costume required message'
     );
 });
+
+it('can costume field error message using setMessage', function () {
+    $v = Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+    ]);
+    $v->setErrorMessages([
+        'test' => [
+            'required' => 'costume required message',
+        ],
+    ]);
+
+    expect($v->errors->test)->toEqual(
+        'costume required message'
+    );
+});
