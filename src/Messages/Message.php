@@ -20,7 +20,7 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
      *
      * @return void
      */
-    public function __set($rule, $message)
+    public function __set(string $rule, string $message)
     {
         $this->set($rule, $message);
     }
