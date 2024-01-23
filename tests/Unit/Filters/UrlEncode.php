@@ -7,7 +7,7 @@ it('can rander urlencode', function () {
 });
 
 it('can filter urlencode', function () {
-    $fr = new \Validator\Validator(['field' => 'test.com/true/right?one=1#2']);
+    $fr = new Validator\Validator(['field' => 'test.com/true/right?one=1#2']);
 
     $fr->filter('field')->urlencode();
 

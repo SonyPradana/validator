@@ -19,7 +19,7 @@ $incorrect = ['test' => [1, 2]];
 // validate with correct input field
 
 it('can validate valid_array_size_lesser with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test1->valid_array_size_lesser(3);
     $val->test1->valid_array_size_lesser(4);
@@ -29,7 +29,7 @@ it('can validate valid_array_size_lesser with correct input', function () use ($
 });
 
 it('can validate valid_array_size_lesser (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test1->not->valid_array_size_lesser(3);
     $val->test1->not->valid_array_size_lesser(4);
@@ -41,7 +41,7 @@ it('can validate valid_array_size_lesser (not) with correct input', function () 
 // validate with incorrect input field
 
 it('can validate valid_array_size_lesser with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test->valid_array_size_lesser(1);
 
@@ -49,7 +49,7 @@ it('can validate valid_array_size_lesser with incorrect input', function () use 
 });
 
 it('can validate regex (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test->not->valid_array_size_lesser(1);
 

@@ -16,7 +16,7 @@ $incorrect = ['test' => 'string', 'other' => 'different_string'];
 // validate with correct input field
 
 it('can validate equalsfield with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->equalsfield('other');
 
@@ -24,7 +24,7 @@ it('can validate equalsfield with correct input', function () use ($correct) {
 });
 
 it('can validate equalsfield (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->not->equalsfield('other');
 
@@ -34,7 +34,7 @@ it('can validate equalsfield (not) with correct input', function () use ($correc
 // validate with incorrect input field
 
 it('can validate equalsfield with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test->equalsfield('other');
 
@@ -42,7 +42,7 @@ it('can validate equalsfield with incorrect input', function () use ($incorrect)
 });
 
 it('can validate contains (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test->not->equalsfield('other');
 

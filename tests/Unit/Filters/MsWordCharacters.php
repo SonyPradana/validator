@@ -7,7 +7,7 @@ it('can rander ms_word_characters', function () {
 });
 
 it('can filter ms_word_characters', function () {
-    $fr = new \Validator\Validator(['field' => '“test”,‘test’,–,…']);
+    $fr = new Validator\Validator(['field' => '“test”,‘test’,–,…']);
 
     $fr->filter('field')->ms_word_characters();
 

@@ -26,7 +26,7 @@ $incorrect = [
 // validate with correct input field
 
 it('can validate phone_number with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->phone_number();
@@ -35,7 +35,7 @@ it('can validate phone_number with correct input', function () use ($correct) {
 });
 
 it('can validate numeric (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->not->phone_number();
@@ -46,7 +46,7 @@ it('can validate numeric (not) with correct input', function () use ($correct) {
 // validate with incorrect input field
 
 it('can validate phone_number with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->phone_number();
@@ -55,7 +55,7 @@ it('can validate phone_number with incorrect input', function () use ($incorrect
 });
 
 it('can validate phone_number (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->not->phone_number();

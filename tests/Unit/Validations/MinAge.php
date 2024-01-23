@@ -16,7 +16,7 @@ $incorrect = ['test' => '2022-01-11'];
 // validate with correct input field
 
 it('can validate min_age with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->min_age(23);
 
@@ -24,7 +24,7 @@ it('can validate min_age with correct input', function () use ($correct) {
 });
 
 it('can validate min_age (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->not()->min_age(23);
 
@@ -34,7 +34,7 @@ it('can validate min_age (not) with correct input', function () use ($correct) {
 // validate with incorrect input field
 
 it('can validate min_age with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test->min_age(23);
 
@@ -42,7 +42,7 @@ it('can validate min_age with incorrect input', function () use ($incorrect) {
 });
 
 it('can validate min_age (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test->not()->min_age(23);
 

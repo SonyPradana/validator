@@ -43,7 +43,7 @@ $incorrect = [
 
 // validate with correct input field
 it('can validate boolean with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->boolean(false);
@@ -52,7 +52,7 @@ it('can validate boolean with correct input', function () use ($correct) {
 });
 
 it('can validate boolean with correct input (strict)', function () use ($correct_strict) {
-    $val = new \Validator\Validator($correct_strict);
+    $val = new Validator\Validator($correct_strict);
 
     $val->test1->boolean(true);
     $val->test2->boolean(true);
@@ -61,7 +61,7 @@ it('can validate boolean with correct input (strict)', function () use ($correct
 });
 
 it('can validate boolean (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->not->boolean(false);
@@ -70,7 +70,7 @@ it('can validate boolean (not) with correct input', function () use ($correct) {
 });
 
 it('can validate boolean (not) with correct input (strict)', function () use ($correct_strict) {
-    $val = new \Validator\Validator($correct_strict);
+    $val = new Validator\Validator($correct_strict);
 
     $val->test1->not->boolean(true);
     $val->test2->not->boolean(true);
@@ -81,7 +81,7 @@ it('can validate boolean (not) with correct input (strict)', function () use ($c
 // validate with incorrect input field
 
 it('can validate boolean with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->boolean(false);
@@ -90,7 +90,7 @@ it('can validate boolean with incorrect input', function () use ($incorrect) {
 });
 
 it('can validate boolean (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->not->boolean(false);

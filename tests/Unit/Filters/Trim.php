@@ -7,7 +7,7 @@ it('can rander trim', function () {
 });
 
 it('can filter trim', function () {
-    $fr = new \Validator\Validator(['field' => '  nomore space  ']);
+    $fr = new Validator\Validator(['field' => '  nomore space  ']);
 
     $fr->filter('field')->trim();
 

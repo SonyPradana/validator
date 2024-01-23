@@ -9,7 +9,7 @@ if (!function_exists('vr')) {
      */
     function vr(): Validator\Rule\Valid
     {
-        return new \Validator\Rule\Valid();
+        return new Validator\Rule\Valid();
     }
 }
 
@@ -20,7 +20,7 @@ if (!function_exists('fr')) {
      */
     function fr(): Validator\Rule\Filter
     {
-        return new \Validator\Rule\Filter();
+        return new Validator\Rule\Filter();
     }
 }
 
@@ -32,6 +32,6 @@ if (!function_exists('validate')) {
      */
     function validate($field): Validator\Validator
     {
-        return new \Validator\Validator($field);
+        return new Validator\Validator($field);
     }
 }

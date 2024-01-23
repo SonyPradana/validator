@@ -43,7 +43,7 @@ it('can add field using method fields', function () {
 });
 
 it('can add field using iterator array', function () {
-    $fields = new class() implements \IteratorAggregate {
+    $fields = new class() implements IteratorAggregate {
         private $fields = [
             'field_1' => 'test',
             'field_2' => 'test',
@@ -51,7 +51,7 @@ it('can add field using iterator array', function () {
 
         public function getIterator(): Traversable
         {
-            return new \ArrayIterator($this->fields);
+            return new ArrayIterator($this->fields);
         }
     };
 

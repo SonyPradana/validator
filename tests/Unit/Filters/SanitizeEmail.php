@@ -7,7 +7,7 @@ it('can rander sanitize_email', function () {
 });
 
 it('can filter sanitize_email', function () {
-    $fr = new \Validator\Validator(['field' => 'john(.doe)@exa//mple.com']);
+    $fr = new Validator\Validator(['field' => 'john(.doe)@exa//mple.com']);
 
     $fr->filter('field')->sanitize_email();
 

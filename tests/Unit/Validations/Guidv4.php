@@ -21,7 +21,7 @@ $incorrect = [
 // validate with correct input field
 
 it('can validate guidv4 with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test1->guidv4();
     $val->test2->guidv4();
@@ -30,7 +30,7 @@ it('can validate guidv4 with correct input', function () use ($correct) {
 });
 
 it('can validate guidv4 (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test1->not->guidv4();
     $val->test2->not->guidv4();
@@ -41,7 +41,7 @@ it('can validate guidv4 (not) with correct input', function () use ($correct) {
 // validate with incorrect input field
 
 it('can validate guidv4 with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test1->guidv4();
     $val->test2->guidv4();
@@ -50,7 +50,7 @@ it('can validate guidv4 with incorrect input', function () use ($incorrect) {
 });
 
 it('can validate guidv4 (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $val->test1->not->guidv4();
     $val->test2->not->guidv4();

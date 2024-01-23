@@ -19,7 +19,7 @@ $incorrect = ['test'  => ''];
 // validate with correct input field
 
 it('can validate url_exists with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->url_exists();
 
@@ -27,7 +27,7 @@ it('can validate url_exists with correct input', function () use ($correct) {
 });
 
 it('can validate url_exists (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->not()->url_exists();
 

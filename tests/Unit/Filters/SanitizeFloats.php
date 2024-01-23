@@ -7,7 +7,7 @@ it('can rander sanitize_floats', function () {
 });
 
 it('can filter sanitize_floats', function () {
-    $fr = new \Validator\Validator(['field' => '12.3']);
+    $fr = new Validator\Validator(['field' => '12.3']);
 
     $fr->filter('field')->sanitize_floats();
 

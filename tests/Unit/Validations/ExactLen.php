@@ -15,7 +15,7 @@ $incorrect = ['test' => 'ñán'];
 // validate with correct input field
 
 it('can validate exact_len with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->exact_len(5);
 
@@ -23,7 +23,7 @@ it('can validate exact_len with correct input', function () use ($correct) {
 });
 
 it('can validate exact_len (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->not->exact_len(5);
 
@@ -33,7 +33,7 @@ it('can validate exact_len (not) with correct input', function () use ($correct)
 // validate with incorrect input field
 
 it('can validate exact_len with incorrect input - less that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // less that
     $val->test->exact_len(2);
@@ -42,7 +42,7 @@ it('can validate exact_len with incorrect input - less that', function () use ($
 });
 
 it('can validate exact_len with incorrect input - more that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // more that
     $val->test->exact_len(4);
@@ -51,7 +51,7 @@ it('can validate exact_len with incorrect input - more that', function () use ($
 });
 
 it('can validate exact_len (not) with incorrect input - less that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // less that
     $val->test->not->exact_len(2);
@@ -60,7 +60,7 @@ it('can validate exact_len (not) with incorrect input - less that', function () 
 });
 
 it('can validate exact_len (not) with incorrect input - more that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // more that
     $val->test->not->exact_len(4);

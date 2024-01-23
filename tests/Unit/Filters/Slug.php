@@ -7,7 +7,7 @@ it('can rander slug', function () {
 });
 
 it('can filter slug', function () {
-    $fr = new \Validator\Validator(['field' => 'long title tobe url']);
+    $fr = new Validator\Validator(['field' => 'long title tobe url']);
 
     $fr->filter('field')->slug();
 

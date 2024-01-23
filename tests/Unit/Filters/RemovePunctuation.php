@@ -7,7 +7,7 @@ it('can rander rmpunctuation', function () {
 });
 
 it('can filter rmpunctuation', function () {
-    $fr = new \Validator\Validator(['field' => 'is true?']);
+    $fr = new Validator\Validator(['field' => 'is true?']);
 
     $fr->filter('field')->rmpunctuation();
 

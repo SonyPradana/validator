@@ -17,7 +17,7 @@ $incorrect = ['test' => [1, 2]];
 // validate with correct input field
 
 it('can validate valid_array_size_equal with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->valid_array_size_equal(3);
 
@@ -25,7 +25,7 @@ it('can validate valid_array_size_equal with correct input', function () use ($c
 });
 
 it('can validate valid_array_size_equal (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $val->test->not()->valid_array_size_equal(3);
 
@@ -35,7 +35,7 @@ it('can validate valid_array_size_equal (not) with correct input', function () u
 // validate with incorrect input field
 
 it('can validate valid_array_size_equal with incorrect input - greate that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // greate that
     $val->test->valid_array_size_equal(3);
@@ -44,7 +44,7 @@ it('can validate valid_array_size_equal with incorrect input - greate that', fun
 });
 
 it('can validate valid_array_size_equal with incorrect input - less that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // less that
     $val->test->valid_array_size_equal(1);
@@ -53,7 +53,7 @@ it('can validate valid_array_size_equal with incorrect input - less that', funct
 });
 
 it('can validate regex (not) with incorrect input - greate that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // greate that
     $val->test->not->valid_array_size_equal(3);
@@ -62,7 +62,7 @@ it('can validate regex (not) with incorrect input - greate that', function () us
 });
 
 it('can validate regex (not) with incorrect input - less that', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     // less that
     $val->test->not->valid_array_size_equal(1);

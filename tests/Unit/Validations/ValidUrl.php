@@ -25,7 +25,7 @@ $incorrect = [
 // validate with correct input field
 
 it('can validate valid_url with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->valid_url();
@@ -34,7 +34,7 @@ it('can validate valid_url with correct input', function () use ($correct) {
 });
 
 it('can validate valid_url (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->not->valid_url();
@@ -45,7 +45,7 @@ it('can validate valid_url (not) with correct input', function () use ($correct)
 // validate with incorrect input field
 
 it('can validate valid_url with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->valid_url();
@@ -54,7 +54,7 @@ it('can validate valid_url with incorrect input', function () use ($incorrect) {
 });
 
 it('can validate iban (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->not->valid_url();
