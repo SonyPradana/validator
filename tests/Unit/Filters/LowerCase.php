@@ -7,7 +7,7 @@ it('can rander lower_case', function () {
 });
 
 it('can filter lower_case', function () {
-    $fr = new \Validator\Validator(['field' => 'TEST']);
+    $fr = new Validator\Validator(['field' => 'TEST']);
 
     $fr->filter('field')->lower_case();
 

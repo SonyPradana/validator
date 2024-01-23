@@ -7,7 +7,7 @@ it('can rander sanitize_numbers', function () {
 });
 
 it('can filter sanitize_numbers', function () {
-    $fr = new \Validator\Validator(['field' => '5-2+3pp']);
+    $fr = new Validator\Validator(['field' => '5-2+3pp']);
 
     $fr->filter('field')->sanitize_numbers();
 

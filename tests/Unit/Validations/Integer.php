@@ -29,7 +29,7 @@ $incorrect = [
 // validate with correct input field
 
 it('can validate integer with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->integer();
@@ -38,7 +38,7 @@ it('can validate integer with correct input', function () use ($correct) {
 });
 
 it('can validate integer (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->not->integer();
@@ -49,7 +49,7 @@ it('can validate integer (not) with correct input', function () use ($correct) {
 // validate with incorrect input field
 
 it('can validate integer with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->integer();
@@ -58,7 +58,7 @@ it('can validate integer with incorrect input', function () use ($incorrect) {
 });
 
 it('can validate iban (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->not->integer();

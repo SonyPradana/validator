@@ -7,7 +7,7 @@ it('can rander noise_words', function () {
 });
 
 it('can filter noice_words', function () {
-    $fr = new \Validator\Validator(['field' => 'word']);
+    $fr = new Validator\Validator(['field' => 'word']);
 
     $fr->filter('field')->noise_words();
 

@@ -7,7 +7,7 @@ it('can rander whole_number', function () {
 });
 
 it('can filter whole_number', function () {
-    $fr = new \Validator\Validator(['field' => '123']);
+    $fr = new Validator\Validator(['field' => '123']);
 
     $fr->filter('field')->whole_number();
 

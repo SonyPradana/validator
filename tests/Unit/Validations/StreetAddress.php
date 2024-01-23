@@ -24,7 +24,7 @@ $incorrect = [
 // validate with correct input field
 
 it('can validate street_address with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->street_address();
@@ -33,7 +33,7 @@ it('can validate street_address with correct input', function () use ($correct) 
 });
 
 it('can validate street_address (not) with correct input', function () use ($correct) {
-    $val = new \Validator\Validator($correct);
+    $val = new Validator\Validator($correct);
 
     $field_name = array_keys($correct);
     $val->field(...$field_name)->not->street_address();
@@ -44,7 +44,7 @@ it('can validate street_address (not) with correct input', function () use ($cor
 // validate with incorrect input field
 
 it('can validate street_address with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->street_address();
@@ -53,7 +53,7 @@ it('can validate street_address with incorrect input', function () use ($incorre
 });
 
 it('can validate street_address (not) with incorrect input', function () use ($incorrect) {
-    $val = new \Validator\Validator($incorrect);
+    $val = new Validator\Validator($incorrect);
 
     $field_name = array_keys($incorrect);
     $val->field(...$field_name)->not->street_address();

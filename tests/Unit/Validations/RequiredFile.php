@@ -27,7 +27,7 @@ $incorrect = [
 
 function validTest(array $input, bool $use_not = false): bool
 {
-    $val = new \Validator\Validator($input);
+    $val = new Validator\Validator($input);
 
     if ($use_not === false) {
         $val->field('files.test')->required_file();

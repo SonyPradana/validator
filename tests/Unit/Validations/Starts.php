@@ -13,7 +13,7 @@ it('can render invert starts validation')
 // validate with correct input field
 
 it('can validate regex with correct input', function () {
-    $val = new \Validator\Validator(['test' => 'test']);
+    $val = new Validator\Validator(['test' => 'test']);
 
     $val->test->starts('tes');
 
@@ -21,7 +21,7 @@ it('can validate regex with correct input', function () {
 });
 
 it('can validate required (not) with correct input', function () {
-    $val = new \Validator\Validator(['test' => 'test']);
+    $val = new Validator\Validator(['test' => 'test']);
 
     $val->test->not->starts('tes');
 
@@ -31,7 +31,7 @@ it('can validate required (not) with correct input', function () {
 // validate with incorrect input field
 
 it('can validate required with incorrect input', function () {
-    $val = new \Validator\Validator(['test' => 'ttest']);
+    $val = new Validator\Validator(['test' => 'ttest']);
 
     $val->test->starts('tes');
 
@@ -39,7 +39,7 @@ it('can validate required with incorrect input', function () {
 });
 
 it('can validate regex (not) with incorrect input', function () {
-    $val = new \Validator\Validator(['test' => 'ttest']);
+    $val = new Validator\Validator(['test' => 'ttest']);
 
     $val->test->not->starts('tes');
 

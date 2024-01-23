@@ -7,7 +7,7 @@ it('can rander htmlencode', function () {
 });
 
 it('can filter htmlencode', function () {
-    $fr = new \Validator\Validator(['field' => '<html>html tag</html>']);
+    $fr = new Validator\Validator(['field' => '<html>html tag</html>']);
 
     $fr->filter('field')->htmlencode();
 

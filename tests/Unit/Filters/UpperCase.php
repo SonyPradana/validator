@@ -7,7 +7,7 @@ it('can rander upper_case', function () {
 });
 
 it('can filter upper_case', function () {
-    $fr = new \Validator\Validator(['field' => 'test']);
+    $fr = new Validator\Validator(['field' => 'test']);
 
     $fr->filter('field')->upper_case();
 
