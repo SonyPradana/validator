@@ -115,3 +115,14 @@ it('can costume field error message using setMessage', function () {
         'costume required message'
     );
 });
+
+it('can costume error message using message poll with dinamic property in field', function () {
+    $v = Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+    ]);
+    $v->messages()->field('test')->required = 'costume required message';
+
+    expect($v->errors->test)->toEqual(
+        'costume required message'
+    );
+});
