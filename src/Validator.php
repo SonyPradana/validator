@@ -262,7 +262,7 @@ final class Validator
      *
      * @throws \Exception
      */
-    public function validOrException(\Exception $exception = null)
+    public function validOrException(?\Exception $exception = null)
     {
         if ($this->Rule->validate($this->fields, $this->valid_pool->get_pool()) === true) {
             return true;
@@ -276,7 +276,7 @@ final class Validator
      *
      * @return bool|array<int, string> Return true if validation valid
      */
-    public function validOrError(\Exception $exception = null)
+    public function validOrError(?\Exception $exception = null)
     {
         return $this->Rule->validate($this->fields, $this->valid_pool->get_pool());
     }
