@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.8.4] - 2024-02-04
+### Added
+- Added support costume error message using parameter callback `Validator::messages($pools)`.
+
 ## [0.8.3] - 2024-01-23
 ### Added
 - Added `Validator::setErrorMessage` add costume error massage using array paramter.
