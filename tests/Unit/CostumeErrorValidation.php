@@ -1,5 +1,6 @@
 <?php
 
+use Validator\Messages\MessagePool;
 use Validator\Rule;
 use Validator\Rule\ValidPool;
 use Validator\Validator;
@@ -123,6 +124,23 @@ it('can costume error message using message poll with dinamic property in field'
     $v->messages()->field('test')->required = 'costume required message';
 
     expect($v->errors->test)->toEqual(
+        'costume required message'
+    );
+});
+
+it('can costume error message using messages with callback', function () {
+    $v = Validator::make()->validation(fn (ValidPool $v) => [
+        $v('test')->required(),
+        $v('test2')->required(),
+    ]);
+    $v->messages(static function (MessagePool $message) {
+        $message->field('test')->required = 'costume required message';
+    })->field('test2')->required = 'costume required message';
+
+    expect($v->errors->test)->toEqual(
+        'costume required message'
+    );
+    expect($v->errors->test2)->toEqual(
         'costume required message'
     );
 });

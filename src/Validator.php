@@ -33,6 +33,9 @@ final class Validator
     /** @var bool Check rule validate has run or not */
     private $has_run_validate = false;
 
+    /** @var MessagePool[] */
+    private $messages = [];
+
     /**
      * Create validation and filter.
      *
@@ -406,15 +409,35 @@ final class Validator
         ;
     }
 
-    /** @var MessagePool[] */
-    private $messages = [];
+    /**
+     * Helper to get costume message from Closure.
+     *
+     * @param callable(MessagePool=): (MessagePool|mixed) $rule_filter closure of MessagePool
+     *
+     * @return MessagePool Costume error Message
+     */
+    private function closureToMessages($rule_filter): MessagePool
+    {
+        $pool  = new MessagePool();
+
+        $return_closure = call_user_func_array($rule_filter, [$pool]);
+
+        return $return_closure instanceof MessagePool
+            ? $return_closure
+            : $pool
+        ;
+    }
 
     /**
      * Set field-rule specific error messages.
+     *
+     * @param callable(MessagePool=): (MessagePool|mixed) $pools Closure with param as MessagePool
      */
-    public function messages(): MessagePool
+    public function messages($pools = null): MessagePool
     {
-        return $this->messages[] = new MessagePool();
+        $pools ??= static fn () => new MessagePool();
+
+        return $this->messages[] = $this->closureToMessages($pools);
     }
 
     /**
